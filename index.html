@@ -307,23 +307,18 @@
         
             const tabs = [];
             const contents = {};
-        
+
+            // Video
             const videoContainer = document.getElementById('video-container');
-            if (courseData.content.videos && courseData.content.videos.length > 0) {
-              tabs.push('วิดีโอ');
-              const videoUrl = courseData.content.videos[0].url; // Assume it's HLS
-              videoContainer.innerHTML = `
-                <video id="hls-video" class="video-js vjs-default-skin" controls preload="auto" width="100%" height="auto">
-                  <source src="${videoUrl}" type="application/x-mpegURL" />
-                </video>
-              `;
-              videojs('hls-video');
-              startProgress(courseId, 'video');
-        
-              const videoList = courseData.content.videos.map((video, i) =>
-                `<li class="p-2 hover:bg-gray-600 rounded cursor-pointer ${i === 0 ? 'bg-red-600 text-white' : ''}" data-url="${video.url}">${video.title}</li>`
-              ).join('');
-              contents['วิดีโอ'] = `<ul>${videoList}</ul>`;
+            if(courseData.content.videos && courseData.content.videos.length > 0) {
+                tabs.push('วิดีโอ');
+                const videoList = courseData.content.videos.map((video, index) =>
+                    <li class="p-3 hover:bg-gray-600 cursor-pointer rounded-md ${index === 0 ? 'bg-red-600 text-white' : ''}" data-url="${video.url}">${video.title}</li>`
+                ).join('');
+                contents['วิดีโอ'] = `<ul class="space-y-2">${videoList}</ul>`;
+                videoContainer.innerHTML = `<iframe class="w-full aspect-video" src="${courseData.content.videos[0].url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            } else {
+                videoContainer.innerHTML = `<div class="w-full aspect-video bg-black flex items-center justify-center"><p class="text-gray-500">ไม่พบวิดีโอสำหรับคอร์สนี้</p></div>`;
             }
         
             // Documents with auto preview/download
