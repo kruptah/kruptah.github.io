@@ -338,30 +338,32 @@
             
                 // Exercises
                 if (courseData.content.exercises && courseData.content.exercises.length > 0) {
-                  tabs.push('แบบฝึกหัด');
-                  const exList = courseData.content.exercises.map(ex =>
-                    `<button class="ex-btn bg-gray-700 hover:bg-gray-600 p-2 rounded-md block w-full text-left mb-2" data-url="${ex.url}">${ex.title}</button>`
-                  ).join('');
-                  contents['แบบฝึกหัด'] = `
-                    <div class="mb-4">${exList}</div>
-                    <div id="exercise-frame" class="mt-4 hidden">
-                      <iframe src="" width="100%" height="600" frameborder="0" allowfullscreen></iframe>
-                    </div>`;
+                    tabs.push('แบบฝึกหัด');
+                    const exList = courseData.content.exercises.map(ex =>
+                        `<button class="ex-btn bg-gray-700 hover:bg-gray-600 p-2 rounded-md block w-full text-left mb-2" data-url="${ex.url}">${ex.title}</button>`
+                    ).join('');
+                    contents['แบบฝึกหัด'] = `
+                        <div class="mb-4">${exList}</div>
+                        <div id="exercise-frame" class="mt-4 hidden">
+                            <iframe src="" width="100%" height="600" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    `;
                 }
             
                 // Exam
                 if (courseData.content.exam && courseData.content.exam.length > 0) {
-                  tabs.push('แบบทดสอบ');
-                  const examList = courseData.content.exam.map(ex =>
-                    `<button class="exam-btn bg-gray-700 hover:bg-gray-600 p-2 rounded-md block w-full text-left mb-2" data-url="${ex.url}">${ex.title}</button>`
-                  ).join('');
-                  contents['แบบทดสอบ'] = `
-                    <div class="mb-4">${examList}</div>
-                    <div id="exam-frame" class="mt-4 hidden">
-                      <iframe src="" width="100%" height="600" frameborder="0" allowfullscreen></iframe>
-                    </div>`;
+                    tabs.push('แบบทดสอบ');
+                    const examList = courseData.content.exam.map(ex =>
+                        `<button class="exam-btn bg-gray-700 hover:bg-gray-600 p-2 rounded-md block w-full text-left mb-2" data-url="${ex.url}">${ex.title}</button>`
+                    ).join('');
+                    contents['แบบทดสอบ'] = `
+                        <div class="mb-4">${examList}</div>
+                        <div id="exam-frame" class="mt-4 hidden">
+                            <iframe src="" width="100%" height="600" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    `;
                 }
-            
+
                 const courseTabs = document.getElementById('course-tabs');
                 const tabContent = document.getElementById('tab-content');
                 courseTabs.innerHTML = tabs.map((tab, index) =>
@@ -386,13 +388,30 @@
                 });
 
                 tabContent.addEventListener('click', e => {
-                    if (e.target.closest('li[data-url]')) {
-                        const li = e.target.closest('li[data-url]');
-                        videoContainer.innerHTML = `<iframe class="w-full aspect-video" src="${li.dataset.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                        document.querySelectorAll('#tab-content li').forEach(item => item.classList.remove('bg-red-600', 'text-white'));
-                        li.classList.add('bg-red-600', 'text-white');
-                    }
-                });
+                // วิดีโอ
+                if (e.target.closest('li[data-url]')) {
+                    const li = e.target.closest('li[data-url]');
+                    videoContainer.innerHTML = `<iframe class="w-full aspect-video" src="${li.dataset.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    document.querySelectorAll('#tab-content li').forEach(item => item.classList.remove('bg-red-600', 'text-white'));
+                    li.classList.add('bg-red-600', 'text-white');
+                }
+            
+                // แบบฝึกหัด (ฝัง Google Form)
+                if (e.target.classList.contains('ex-btn')) {
+                    const url = e.target.dataset.url;
+                    const frame = document.querySelector('#exercise-frame');
+                    frame.classList.remove('hidden');
+                    frame.querySelector('iframe').src = url;
+                }
+            
+                // แบบทดสอบ (ฝัง Google Form)
+                if (e.target.classList.contains('exam-btn')) {
+                    const url = e.target.dataset.url;
+                    const frame = document.querySelector('#exam-frame');
+                    frame.classList.remove('hidden');
+                    frame.querySelector('iframe').src = url;
+                }
+            });
                 
                 if (tabs.length > 0) switchTab(tabs[0]);
 
