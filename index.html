@@ -331,44 +331,6 @@
                  videoContainer.innerHTML = `<div class="w-full aspect-video bg-black flex items-center justify-center"><p class="text-gray-500">ไม่พบวิดีโอสำหรับคอร์สนี้</p></div>`;
             }
 
-                // Documents
-                if(courseData.content.documents && courseData.content.documents.length > 0) {
-                    tabs.push('เอกสาร');
-                    const docList = courseData.content.documents.map(doc =>
-                        `<div class="p-4 bg-gray-700 rounded-lg flex justify-between items-center">
-                            <span><i class="fas fa-file-alt mr-3"></i>${doc.title}</span>
-                            <div>
-                                <button class="bg-blue-600 hover:bg-blue-500 text-white py-1 px-3 rounded-md mr-2" onclick="previewContent('${doc.url}', 'เอกสาร')">ดูตัวอย่าง</button>
-                                ${doc.canDownload ? `<button class="bg-green-600 hover:bg-green-500 text-white py-1 px-3 rounded-md" onclick="alert('ฟังก์ชันดาวน์โหลดจะทำงานเมื่อเชื่อมต่อระบบจริง')">ดาวน์โหลด</button>` : ''}
-                            </div>
-                        </div>`
-                    ).join('');
-                    contents['เอกสาร'] = `<div class="space-y-4">${docList}</div>`;
-                }
-    
-                // Exercises
-                if(courseData.content.exercises && courseData.content.exercises.length > 0) {
-                    tabs.push('แบบฝึกหัด');
-                    const exerciseList = courseData.content.exercises.map(ex =>
-                         `<div class="p-4 bg-gray-700 rounded-lg flex justify-between items-center">
-                            <span><i class="fas fa-pencil-alt mr-3"></i>${ex.title}</span>
-                            <button class="btn-brand py-1 px-3 rounded-md" onclick="previewContent('${ex.url}', 'แบบฝึกหัด')">ทำแบบฝึกหัด</button>
-                        </div>`
-                    ).join('');
-                    contents['แบบฝึกหัด'] = `<div class="space-y-4">${exerciseList}</div>`;
-                }
-    
-                // Exam
-                if(courseData.content.exam) {
-                    tabs.push('ข้อสอบ');
-                    contents['ข้อสอบ'] = `<div class="text-center p-10">
-                        <p class="mb-4 text-lg">นี่คือข้อสอบปลายภาคสำหรับคอร์สนี้</p>
-                        <button class="btn-brand font-bold py-3 px-8 text-xl rounded-lg" onclick="previewContent('${courseData.content.exam.url}', 'ข้อสอบ')">
-                            <i class="fas fa-graduation-cap mr-2"></i> เริ่มทำข้อสอบ
-                        </button>
-                    </div>`;
-                }
-
                 const courseTabs = document.getElementById('course-tabs');
                 const tabContent = document.getElementById('tab-content');
                 courseTabs.innerHTML = tabs.map((tab, index) =>
