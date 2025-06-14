@@ -318,9 +318,33 @@
                     videoContainer.innerHTML = `<div class="w-full aspect-video bg-black flex items-center justify-center"><p class="text-gray-500">ไม่พบวิดีโอสำหรับคอร์สนี้</p></div>`;
                 }
                 
-                // Documents, Exercises, Exam...
-                // (logic for documents, exercises, exam is identical to previous version)
-
+                // Documents
+                if (courseData.content.documents && courseData.content.documents.length > 0) {
+                    tabs.push('เอกสาร');
+                    const docList = courseData.content.documents.map(doc =>
+                        `<li><a href="${doc.url}" target="_blank" class="text-blue-400 hover:underline">${doc.title}</a></li>`
+                    ).join('');
+                    contents['เอกสาร'] = `<ul class="space-y-2">${docList}</ul>`;
+                }
+                
+                // Exercises
+                if (courseData.content.exercises && courseData.content.exercises.length > 0) {
+                    tabs.push('แบบฝึกหัด');
+                    const exList = courseData.content.exercises.map(ex =>
+                        `<li><a href="${ex.url}" target="_blank" class="text-green-400 hover:underline">${ex.title}</a></li>`
+                    ).join('');
+                    contents['แบบฝึกหัด'] = `<ul class="space-y-2">${exList}</ul>`;
+                }
+                
+                // Exams
+                if (courseData.content.exams && courseData.content.exams.length > 0) {
+                    tabs.push('แบบทดสอบ');
+                    const examList = courseData.content.exams.map(exam =>
+                        `<li><a href="${exam.url}" target="_blank" class="text-yellow-400 hover:underline">${exam.title}</a></li>`
+                    ).join('');
+                    contents['แบบทดสอบ'] = `<ul class="space-y-2">${examList}</ul>`;
+                }
+                
                 const courseTabs = document.getElementById('course-tabs');
                 const tabContent = document.getElementById('tab-content');
                 courseTabs.innerHTML = tabs.map((tab, index) =>
