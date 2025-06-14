@@ -340,13 +340,11 @@
                 if (courseData.content.exam && courseData.content.exam.length > 0) {
                     tabs.push('แบบทดสอบ');
                     const examList = courseData.content.exam.map(exam =>
-                        `<li><a href="${exam.url}" target="_blank" class="text-blue-400 hover:underline">${exam.title}</a></li>`
+                        `<iframe src="${exam.url}" width="100%" height="600" frameborder="0" allowfullscreen></iframe>`
                     ).join('');
-                    contents['แบบทดสอบ'] = `<ul class="space-y-2">${examList}</ul>`;
+                    contents['แบบทดสอบ'] = examList;
                 }
 
-            
-                
                 const courseTabs = document.getElementById('course-tabs');
                 const tabContent = document.getElementById('tab-content');
                 courseTabs.innerHTML = tabs.map((tab, index) =>
