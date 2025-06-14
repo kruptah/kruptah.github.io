@@ -331,19 +331,21 @@
                 if (courseData.content.exercises && courseData.content.exercises.length > 0) {
                     tabs.push('แบบฝึกหัด');
                     const exList = courseData.content.exercises.map(ex =>
-                        `<li><a href="${ex.url}" target="_blank" class="text-green-400 hover:underline">${ex.title}</a></li>`
+                        `<li><a href="${ex.url}" target="_blank" class="text-blue-400 hover:underline">${ex.title}</a></li>`
                     ).join('');
                     contents['แบบฝึกหัด'] = `<ul class="space-y-2">${exList}</ul>`;
                 }
                 
-                // Exams
-                if (courseData.content.exams && courseData.content.exams.length > 0) {
+                // Exam
+                if (courseData.content.exam && courseData.content.exam.length > 0) {
                     tabs.push('แบบทดสอบ');
-                    const examList = courseData.content.exams.map(exam =>
-                        `<li><a href="${exam.url}" target="_blank" class="text-yellow-400 hover:underline">${exam.title}</a></li>`
+                    const examList = courseData.content.exam.map(exam =>
+                        `<li><a href="${exam.url}" target="_blank" class="text-blue-400 hover:underline">${exam.title}</a></li>`
                     ).join('');
                     contents['แบบทดสอบ'] = `<ul class="space-y-2">${examList}</ul>`;
                 }
+
+            
                 
                 const courseTabs = document.getElementById('course-tabs');
                 const tabContent = document.getElementById('tab-content');
