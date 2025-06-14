@@ -331,9 +331,9 @@
                 if (courseData.content.exercises && courseData.content.exercises.length > 0) {
                     tabs.push('แบบฝึกหัด');
                     const exList = courseData.content.exercises.map(ex =>
-                        `<li><a href="${ex.url}" target="_blank" class="text-blue-400 hover:underline">${ex.title}</a></li>`
+                        `<iframe src="${ex.url}" width="100%" height="600" frameborder="0" allowfullscreen></iframe>`
                     ).join('');
-                    contents['แบบฝึกหัด'] = `<ul class="space-y-2">${exList}</ul>`;
+                    contents['แบบฝึกหัด'] = exList;
                 }
                 
                 // Exam
