@@ -3,37 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZenLearn - Self-Learning System</title>
+    <title>เรียนเลขกับพี่ต้าห์</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font changed back to Anuphan -->
+    <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /*
-         * --- Zen Design & Color Palette ---
-         * Inspired by nature, simplicity, and tranquility.
-         * We use a dark, desaturated slate for the base, a calming sage for primary actions,
-         * and a warm amber for highlights, creating a focused yet gentle environment.
-        */
         :root {
-            --bg-dark-slate: #1A202C; /* Base background - like a dark stone */
-            --bg-light-slate: #2D3748; /* Lighter elements, cards */
-            --bg-hover-slate: #4A5568; /* Hover states */
-            --text-primary: #E2E8F0;   /* Main text - soft white */
-            --text-secondary: #A0AEC0; /* Subtitles, less important text */
-            --brand-sage: #689F84;     /* Primary buttons, progress - calming green */
+            --bg-dark-slate: #1A202C;
+            --bg-light-slate: #2D3748;
+            --bg-hover-slate: #4A5568;
+            --text-primary: #E2E8F0;
+            --text-secondary: #A0AEC0;
+            --brand-sage: #689F84;
             --brand-sage-hover: #5A8A72;
-            --highlight-amber: #F6AD55; /* Highlights, notifications - warm, natural light */
+            --highlight-amber: #F6AD55;
+            --danger-red: #E53E3E;
         }
 
         body {
-            font-family: 'Kanit', sans-serif; /* Changed font to Kanit */
+            /* Font changed back to Anuphan */
+            font-family: 'Anuphan', sans-serif;
             background-color: var(--bg-dark-slate);
             color: var(--text-primary);
         }
 
-        /* --- Component Styling --- */
         .form-input {
             background-color: var(--bg-light-slate);
             border: 1px solid var(--bg-hover-slate);
@@ -62,6 +58,8 @@
             background-color: var(--bg-light-slate);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         .course-card:hover {
             transform: translateY(-8px);
@@ -73,51 +71,39 @@
         .progress-bar-bg {
             background-color: var(--bg-hover-slate);
         }
+        .page { display: none; }
+        .page.active { display: block; }
 
-        /* --- Page Transitions --- */
-        .page {
-            display: none; /* Initially hide all pages */
-        }
-        .page.active {
-            display: block; /* Show active page */
-        }
-
-        /* --- Zen Learning Environment --- */
+        /* Mobile-First Sidebar Styles */
         .course-sidebar {
             scrollbar-width: thin;
             scrollbar-color: var(--bg-hover-slate) var(--bg-light-slate);
         }
-        .course-sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .course-sidebar::-webkit-scrollbar-track {
-            background: var(--bg-light-slate);
-        }
+        .course-sidebar::-webkit-scrollbar { width: 6px; }
+        .course-sidebar::-webkit-scrollbar-track { background: var(--bg-light-slate); }
         .course-sidebar::-webkit-scrollbar-thumb {
             background-color: var(--bg-hover-slate);
             border-radius: 10px;
         }
-        .lesson-item.completed-lesson {
-            color: var(--text-secondary);
+        .lesson-group-header {
+            padding: 10px 8px 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--highlight-amber);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
+        .lesson-item.completed-lesson { color: var(--text-secondary); }
         .lesson-item.active-lesson {
             background-color: var(--brand-sage);
             color: white;
         }
-        .lesson-item.active-lesson .lesson-title {
-            text-decoration: none;
-        }
-        .lesson-item .lesson-title {
-             text-decoration: none;
-        }
-        .lesson-item.completed-lesson .lesson-title {
-            text-decoration: line-through;
-        }
+        .lesson-item .lesson-title { text-decoration: none; }
+        .lesson-item.completed-lesson .lesson-title { text-decoration: line-through; }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Main Application Container -->
     <div id="app" class="min-h-screen">
 
         <!-- Login Page -->
@@ -125,8 +111,8 @@
             <div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1489549132488-d00b7d80e42a?q=80&w=2070&auto=format&fit=crop');">
                 <div class="w-full max-w-sm p-8 space-y-6 bg-black bg-opacity-60 backdrop-blur-sm rounded-2xl shadow-2xl">
                     <div class="text-center">
-                        <h1 class="text-4xl font-bold text-white">ZenLearn</h1>
-                        <p class="mt-2 text-lg font-light text-gray-300">Self-Learning System</p>
+                        <h1 class="text-4xl font-bold text-white">เรียนเลขกับพี่ต้าห์</h1>
+                        <p class="mt-2 text-lg font-light text-gray-300">KruP'Tah Self-Learning System</p>
                     </div>
                     <form id="login-form" class="space-y-6">
                         <div>
@@ -139,17 +125,14 @@
                         </div>
                         <p id="login-error" class="text-amber-400 text-center h-4 text-sm"></p>
                         <div>
-                            <button type="submit" id="login-submit-btn" class="w-full btn-brand font-bold py-3 px-4 rounded-lg text-lg">
-                                เข้าสู่ระบบ
-                            </button>
+                            <button type="submit" id="login-submit-btn" class="w-full btn-brand font-bold py-3 px-4 rounded-lg text-lg">เข้าสู่ระบบ</button>
                         </div>
                     </form>
-                    <!-- Contact Channels Added -->
                     <div class="text-center text-gray-300 pt-4 border-t border-gray-700">
                         <p class="mb-3 font-light">ช่องทางติดต่อ</p>
                         <div class="flex justify-center space-x-6">
-                            <a href="https://www.facebook.com/profile.php?id=100089853924528" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-facebook-f text-2xl"></i><span class="block text-xs mt-1">เรียนเลขกับพี่ต้าห์</span></a>
-                            <a href="https://www.tiktok.com/@mathptah" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-tiktok text-2xl"></i><span class="block text-xs mt-1">mathptah</span></a>
+                            <a href="https://www.facebook.com/mathptah" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-facebook-f text-2xl"></i><span class="block text-xs mt-1">เรียนเลขกับพี่ต้าห์</span></a>
+                            <a href="https://www.tiktok.com/@mathptah?_t=ZS-8xozEP3Abqe&_r=1" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-tiktok text-2xl"></i><span class="block text-xs mt-1">mathptah</span></a>
                         </div>
                     </div>
                 </div>
@@ -158,18 +141,21 @@
 
         <!-- Dashboard Page -->
         <div id="dashboard-page" class="page">
-            <header class="p-4 flex justify-between items-center sticky top-0 z-50 bg-slate-900/50 backdrop-blur-lg border-b border-slate-700">
+            <header class="p-4 flex justify-between items-center sticky top-0 z-30 bg-slate-900/50 backdrop-blur-lg border-b border-slate-700">
                 <h1 class="text-2xl font-bold text-white">ZenLearn</h1>
-                <div class="flex items-center">
-                    <span id="user-display-name" class="mr-4 text-gray-300"></span>
+                <div class="flex items-center space-x-4">
+                    <div class="text-center">
+                        <div id="dashboard-clock" class="text-lg font-semibold text-white"></div>
+                        <div id="dashboard-date" class="text-xs text-slate-400"></div>
+                    </div>
+                    <div class="w-px h-10 bg-slate-700"></div>
+                    <span id="user-display-name" class="text-gray-300 hidden sm:block"></span>
                     <button id="logout-btn" class="bg-slate-700 hover:bg-slate-600 py-2 px-4 rounded-lg text-sm">ออกจากระบบ</button>
                 </div>
             </header>
             <main class="p-4 md:p-8">
                 <h2 class="text-3xl font-semibold mb-6 text-gray-200">คอร์สเรียนของฉัน</h2>
-                <div id="course-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-                    <!-- Course cards will be injected here -->
-                </div>
+                <div id="course-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8"></div>
                 <div id="no-courses" class="hidden text-center py-20">
                     <i class="fas fa-book-open text-6xl text-slate-600"></i>
                     <h3 class="text-2xl text-slate-400 mt-4">ยังไม่มีคอร์สเรียน</h3>
@@ -178,27 +164,51 @@
             </main>
         </div>
 
-        <!-- Course Detail Page (Learning Environment) -->
+        <!-- Course Detail Page (Mobile-First) -->
         <div id="course-page" class="page">
-            <div class="flex h-screen">
-                <!-- Sidebar: Course Navigation -->
-                <aside class="w-80 bg-slate-800 flex-shrink-0 flex flex-col course-sidebar overflow-y-auto">
+            <!-- Mobile Sidebar Overlay -->
+            <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden lg:hidden"></div>
+            
+            <div class="relative min-h-screen lg:flex">
+                <!-- Sidebar: Hidden on mobile, visible on desktop -->
+                <aside id="course-sidebar" class="fixed inset-y-0 left-0 w-72 bg-slate-800 flex-shrink-0 flex flex-col course-sidebar overflow-y-auto z-40 transform -translate-x-full lg:relative lg:translate-x-0 transition-transform duration-300 ease-in-out">
                     <div class="p-4 border-b border-slate-700 sticky top-0 bg-slate-800 z-10">
-                        <button id="back-to-dashboard" class="text-sm text-slate-300 hover:text-white mb-3">
-                            <i class="fas fa-arrow-left mr-2"></i> กลับไปหน้าหลัก
-                        </button>
-                        <h3 id="course-sidebar-title" class="text-lg font-bold text-white"></h3>
+                        <div class="flex justify-between items-center">
+                             <h3 id="course-sidebar-title" class="text-lg font-bold text-white"></h3>
+                             <button id="close-sidebar-btn" class="lg:hidden text-slate-400 hover:text-white text-xl">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
                     </div>
-                    <nav id="course-lesson-list" class="flex-grow p-2 space-y-1">
-                        <!-- Lesson items will be injected here -->
-                    </nav>
+                    <nav id="course-lesson-list" class="flex-grow p-2 space-y-1"></nav>
+                    <div class="p-4 mt-auto border-t border-slate-700 sticky bottom-0 bg-slate-800">
+                        <a href="https://forms.gle/E5Jzw7w4x6nqvKPz6" target="_blank" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-white font-bold py-3 px-4 rounded-lg transition-colors">
+                            <i class="fas fa-question-circle mr-2"></i> สงสัยแล้วถามเลย
+                        </a>
+                    </div>
+                    <div class="p-4 mt-auto border-t border-slate-700 sticky bottom-0 bg-slate-800">
+                        <a href="https://kruptah.github.io" target="_blank" class="block w-full text-center bg-red-400 hover:bg-red-300 text-white font-bold py-3 px-4 rounded-lg transition-colors">
+                            <i class="fas fa-home mr-2"></i> กลับสู่หน้าหลัก
+                        </a>
+                    </div>
                 </aside>
 
-                <!-- Main Content: Player, Docs, etc. -->
-                <main class="flex-grow flex flex-col bg-slate-900">
-                    <div id="content-display-area" class="flex-grow p-4 md:p-8 flex items-center justify-center">
-                        <!-- Content (video, doc, quiz) will be injected here -->
-                    </div>
+                <!-- Main Content Area -->
+                <main class="flex-grow flex flex-col w-full lg:w-auto">
+                    <!-- Header for Mobile and Desktop -->
+                    <header class="p-4 flex justify-between items-center sticky top-0 z-20 bg-slate-900/50 backdrop-blur-lg border-b border-slate-700">
+                        <div class="flex items-center">
+                            <button id="open-sidebar-btn" class="lg:hidden text-white text-xl mr-4"><i class="fas fa-bars"></i></button>
+                            <button id="back-to-dashboard" class="hidden lg:block text-sm text-slate-300 hover:text-white">
+                                <i class="fas fa-arrow-left mr-2"></i> กลับไปหน้าหลัก
+                            </button>
+                        </div>
+                        <div class="text-center">
+                            <div id="course-clock" class="text-lg font-semibold text-white"></div>
+                            <div id="course-date" class="text-xs text-slate-400"></div>
+                        </div>
+                    </header>
+                    <div id="content-display-area" class="flex-grow p-4 md:p-8 flex items-center justify-center"></div>
                     <div class="p-4 bg-slate-800/50 border-t border-slate-700 flex justify-between items-center">
                         <button id="prev-lesson-btn" class="btn-brand opacity-50 pointer-events-none py-2 px-5 rounded-lg"><i class="fas fa-chevron-left mr-2"></i> ก่อนหน้า</button>
                         <div id="lesson-completion-area"></div>
@@ -207,42 +217,35 @@
                 </main>
             </div>
         </div>
-
     </div>
 
     <script>
-        // --- API Connection ---
-        // IMPORTANT SECURITY NOTE: The current backend uses Google Apps Script and Google Sheets.
-        // This is NOT a secure or scalable solution for a real-world LMS, especially for user authentication.
-        // Passwords should NEVER be stored or checked in plaintext.
-        // RECOMMENDATION: Migrate to a proper backend service like Firebase (Authentication, Firestore) or a dedicated server with a database.
         const webAppUrl = 'https://script.google.com/macros/s/AKfycbyUWO-BGs76jDbLCZrnFaWwhFvULFU-ISZlou7JFWAGH-8Pu5i5_bvadis3SYhMQet5Pw/exec';
-
         const api = {
-            login: async function(username, password) {
+            login: async (username, password) => {
                 const url = `${webAppUrl}?action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
-                const response = await fetch(url);
-                if (!response.ok) throw new Error('เกิดข้อผิดพลาดในการเชื่อมต่อ');
-                const result = await response.json();
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('เกิดข้อผิดพลาดในการเชื่อมต่อ');
+                const result = await res.json();
                 if (result.status === 'success') return result.data;
                 throw new Error(result.message || 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
             },
-            getCourseDetails: async function(courseId) {
+            getCourseDetails: async (courseId) => {
                 const url = `${webAppUrl}?action=getCourseDetails&courseId=${encodeURIComponent(courseId)}`;
-                const response = await fetch(url);
-                if (!response.ok) throw new Error('ไม่สามารถโหลดข้อมูลคอร์สได้');
-                const result = await response.json();
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('ไม่สามารถโหลดข้อมูลคอร์สได้');
+                const result = await res.json();
                 if (result.status === 'success') return result.data;
                 throw new Error(result.message || 'ไม่พบข้อมูลคอร์ส');
             }
         };
 
-        // --- Application State & DOM Elements ---
         const appState = {
             currentUser: null,
             currentCourse: null,
             currentLessonIndex: 0,
-            lessonProgress: {} // { courseId: [true, false, ...] }
+            lessonProgress: {},
+            clockInterval: null,
         };
 
         const pages = {
@@ -250,19 +253,19 @@
             dashboard: document.getElementById('dashboard-page'),
             course: document.getElementById('course-page'),
         };
+        
+        // Mobile UI Elements
+        const sidebar = document.getElementById('course-sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const openSidebarBtn = document.getElementById('open-sidebar-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
 
-        const loginForm = document.getElementById('login-form');
-        const loginError = document.getElementById('login-error');
-        const loginBtn = document.getElementById('login-submit-btn');
-
-        // --- Page Navigation ---
-        function showPage(pageId) {
-            Object.values(pages).forEach(page => page.classList.remove('active'));
+        const showPage = (pageId) => {
+            Object.values(pages).forEach(p => p.classList.remove('active'));
             pages[pageId].classList.add('active');
-        }
+        };
 
-        // --- Dashboard Logic ---
-        function renderDashboard(userData) {
+        const renderDashboard = (userData) => {
             document.getElementById('user-display-name').textContent = `สวัสดี, ${userData.name}`;
             const courseGrid = document.getElementById('course-grid');
             const noCoursesMessage = document.getElementById('no-courses');
@@ -274,104 +277,153 @@
                 noCoursesMessage.classList.add('hidden');
                 userData.courses.forEach(course => {
                     const card = document.createElement('div');
-                    card.className = 'course-card rounded-lg shadow-lg cursor-pointer group';
-                    card.dataset.courseId = course.id;
+                    card.className = 'course-card rounded-lg shadow-lg group';
+                    let isClickable = true;
+
+                    let countdownHtml = '';
+                    if (course.enrollment && course.enrollment.startDate && course.enrollment.durationDays) {
+                        const startDate = new Date(course.enrollment.startDate);
+                        const endDate = new Date(new Date(startDate).setDate(startDate.getDate() + parseInt(course.enrollment.durationDays, 10)));
+                        const now = new Date();
+                        const timeLeft = endDate - now;
+                        
+                        if (timeLeft < 0) {
+                            countdownHtml = `<div class="text-xs text-slate-500"><i class="fas fa-times-circle mr-1"></i> หมดอายุแล้ว</div>`;
+                            card.style.opacity = '0.7';
+                            isClickable = false;
+                        } else {
+                            const daysLeft = Math.ceil(timeLeft / (1000 * 60 * 60 * 24));
+                            const colorClass = daysLeft <= 7 ? 'text-red-400' : 'text-slate-400';
+                            countdownHtml = `<div class="text-xs ${colorClass}"><i class="fas fa-clock mr-1"></i> เหลือ ${daysLeft} วัน</div>`;
+                        }
+                    }
+                    
+                    if(isClickable) {
+                        card.classList.add('cursor-pointer');
+                        card.addEventListener('click', () => showCourseDetail(course.id));
+                    }
 
                     card.innerHTML = `
-                        <div class="relative aspect-[16/10]">
+                        <div class="relative aspect-[16/10] flex-shrink-0">
                             <img src="${course.coverImg}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1A202C/A0AEC0?text=Image+Not+Found';" alt="${course.title}" class="w-full h-full object-cover rounded-t-lg">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 right-0 p-4">
                                 <h3 class="font-bold text-lg text-white truncate">${course.title}</h3>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <div class="progress-bar-bg w-full h-1.5 rounded-full">
-                                <div class="progress-bar-fill h-1.5 rounded-full" style="width: ${course.progress || 0}%"></div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <div class="flex-grow">
+                                <div class="progress-bar-bg w-full h-1.5 rounded-full">
+                                    <div class="progress-bar-fill h-1.5 rounded-full" style="width: ${course.progress || 0}%"></div>
+                                </div>
+                                <div class="flex justify-between items-center mt-2">
+                                    <p class="text-xs text-slate-400">${course.progress || 0}% เรียนไปแล้ว</p>
+                                    ${countdownHtml}
+                                </div>
                             </div>
-                            <p class="text-xs text-slate-400 mt-2 text-right">${course.progress || 0}% เรียนไปแล้ว</p>
                         </div>
                     `;
-                    card.addEventListener('click', () => showCourseDetail(course.id));
                     courseGrid.appendChild(card);
                 });
             }
             showPage('dashboard');
-        }
+        };
 
-        // --- Course Detail (Learning Environment) Logic ---
-        async function showCourseDetail(courseId) {
+        const showCourseDetail = async (courseId) => {
             try {
                 const courseData = await api.getCourseDetails(courseId);
-                appState.currentCourse = flattenCourseContent(courseData);
-                
+                appState.currentCourse = groupAndFlattenCourseContent(courseData);
                 const savedProgress = sessionStorage.getItem(`progress_${courseId}`);
-                if (savedProgress) {
-                    appState.lessonProgress[courseId] = JSON.parse(savedProgress);
-                } else {
-                    appState.lessonProgress[courseId] = new Array(appState.currentCourse.lessons.length).fill(false);
-                }
+                appState.lessonProgress[courseId] = savedProgress ? JSON.parse(savedProgress) : {};
 
                 document.getElementById('course-sidebar-title').textContent = appState.currentCourse.title;
                 renderLessonList();
-                appState.currentLessonIndex = 0;
-                renderLessonContent(0);
+                const firstLessonKey = Object.keys(appState.currentCourse.groupedLessons).find(key => appState.currentCourse.groupedLessons[key].length > 0);
+                if (firstLessonKey) {
+                    const firstLesson = appState.currentCourse.groupedLessons[firstLessonKey][0];
+                    renderLessonContent(firstLesson);
+                }
                 showPage('course');
             } catch (error) {
                 console.error("Failed to load course details:", error);
-                // Use a more user-friendly modal/notification instead of alert
                 alert(`เกิดข้อผิดพลาด: ${error.message}`);
             }
-        }
+        };
 
-        function flattenCourseContent(courseData) {
-            const lessons = [];
-            let lessonCounter = 0;
-            if (courseData.content.videos) {
-                courseData.content.videos.forEach(v => lessons.push({ index: lessonCounter++, type: 'video', title: v.title, url: v.url }));
-            }
-            if (courseData.content.documents) {
-                const getGdriveId = (url) => (url.match(/\/d\/([\w-]+)/) || [])[1] || '';
-                courseData.content.documents.forEach(d => lessons.push({ index: lessonCounter++, type: 'document', title: d.title, previewUrl: `https://drive.google.com/file/d/${getGdriveId(d.url)}/preview`, downloadUrl: `https://drive.google.com/uc?export=download&id=${getGdriveId(d.url)}` }));
-            }
-            if (courseData.content.exercises) {
-                courseData.content.exercises.forEach(e => lessons.push({ index: lessonCounter++, type: 'quiz', title: e.title, url: e.url }));
-            }
-             if (courseData.content.exam) {
-                courseData.content.exam.forEach(ex => lessons.push({ index: lessonCounter++, type: 'quiz', title: ex.title, url: ex.url, isExam: true }));
-            }
-            courseData.lessons = lessons;
+        const groupAndFlattenCourseContent = (courseData) => {
+            const grouped = { videos: [], documents: [], quizzes: [], exams: [] };
+            const flatList = [];
+            let flatIndex = 0;
+
+            const processItems = (items, type, groupKey) => {
+                if (items) {
+                    items.forEach(item => {
+                        const lesson = { ...item, type, groupKey, flatIndex: flatIndex++ };
+                        if (type === 'document') {
+                            const id = (item.url.match(/\/d\/([\w-]+)/) || [])[1] || '';
+                            lesson.previewUrl = `https://drive.google.com/file/d/${id}/preview`;
+                            lesson.downloadUrl = `https://drive.google.com/uc?export=download&id=${id}`;
+                        }
+                        grouped[groupKey].push(lesson);
+                        flatList.push(lesson);
+                    });
+                }
+            };
+            
+            processItems(courseData.content.videos, 'video', 'videos');
+            processItems(courseData.content.documents, 'document', 'documents');
+            processItems(courseData.content.exercises, 'quiz', 'quizzes');
+            processItems(courseData.content.exam, 'quiz', 'exams');
+
+            courseData.groupedLessons = grouped;
+            courseData.flatLessons = flatList;
             return courseData;
-        }
+        };
 
-        function renderLessonList() {
+        const renderLessonList = () => {
             const lessonListEl = document.getElementById('course-lesson-list');
             lessonListEl.innerHTML = '';
             const courseId = appState.currentCourse.courseId;
-            const progress = appState.lessonProgress[courseId] || [];
+            const progress = appState.lessonProgress[courseId] || {};
+            const groupHeaders = {
+                videos: "บทเรียนวิดีโอ",
+                documents: "เอกสารประกอบการเรียน",
+                quizzes: "แบบฝึกหัด",
+                exams: "ข้อสอบ"
+            };
 
-            appState.currentCourse.lessons.forEach((lesson, index) => {
-                const li = document.createElement('li');
-                const icon = lesson.type === 'video' ? 'fa-play-circle' : lesson.type === 'document' ? 'fa-file-alt' : 'fa-question-circle';
-                li.className = `lesson-item p-3 rounded-lg cursor-pointer flex items-center transition-colors duration-200 hover:bg-slate-700`;
-                li.classList.toggle('active-lesson', index === appState.currentLessonIndex);
-                li.classList.toggle('completed-lesson', progress[index]);
-                li.dataset.lessonIndex = index;
-                li.innerHTML = `
-                    <i class="fas ${progress[index] ? 'fa-check-circle text-green-400' : icon} w-8 text-center text-slate-400"></i>
-                    <span class="flex-grow lesson-title">${lesson.title}</span>
-                `;
-                li.addEventListener('click', () => {
-                    appState.currentLessonIndex = index;
-                    renderLessonContent(index);
-                    renderLessonList();
-                });
-                lessonListEl.appendChild(li);
-            });
-        }
+            for (const groupKey in appState.currentCourse.groupedLessons) {
+                const lessons = appState.currentCourse.groupedLessons[groupKey];
+                if (lessons.length > 0) {
+                    const header = document.createElement('h3');
+                    header.className = 'lesson-group-header';
+                    header.textContent = groupHeaders[groupKey];
+                    lessonListEl.appendChild(header);
 
-        function renderLessonContent(index) {
-            const lesson = appState.currentCourse.lessons[index];
+                    lessons.forEach(lesson => {
+                        const li = document.createElement('li');
+                        const isCompleted = !!progress[lesson.flatIndex];
+                        const icon = lesson.type === 'video' ? 'fa-play-circle' : lesson.type === 'document' ? 'fa-file-alt' : 'fa-question-circle';
+                        li.className = `lesson-item p-3 rounded-lg cursor-pointer flex items-center transition-colors duration-200 hover:bg-slate-700`;
+                        li.classList.toggle('active-lesson', lesson.flatIndex === appState.currentLessonIndex);
+                        li.classList.toggle('completed-lesson', isCompleted);
+                        li.addEventListener('click', () => {
+                            renderLessonContent(lesson);
+                            renderLessonList();
+                            toggleMobileMenu(false); // Close menu on selection
+                        });
+                        li.innerHTML = `
+                            <i class="fas ${isCompleted ? 'fa-check-circle text-green-400' : icon} w-8 text-center text-slate-400"></i>
+                            <span class="flex-grow lesson-title">${lesson.title}</span>
+                        `;
+                        lessonListEl.appendChild(li);
+                    });
+                }
+            }
+        };
+
+        const renderLessonContent = (lesson) => {
+            appState.currentLessonIndex = lesson.flatIndex;
             const contentArea = document.getElementById('content-display-area');
             let contentHtml = '';
 
@@ -389,38 +441,37 @@
                         </div>
                     </div>`;
                     break;
-                case 'quiz': // Updated logic for quizzes and exams
+                case 'quiz':
                     contentHtml = `<div class="w-full h-full flex flex-col items-center justify-center bg-slate-800 rounded-lg p-8 text-center">
                         <i class="fas fa-file-signature text-8xl text-slate-600 mb-6"></i>
-                        <h2 class="text-2xl font-bold mb-2">${lesson.isExam ? 'ข้อสอบ' : 'แบบฝึกหัด'}</h2>
+                        <h2 class="text-2xl font-bold mb-2">${lesson.groupKey === 'exams' ? 'ข้อสอบ' : 'แบบฝึกหัด'}</h2>
                         <p class="text-lg text-slate-300 mb-6">${lesson.title}</p>
                         <button onclick="window.open('${lesson.url}', '_blank')" class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-3 px-8 rounded-lg transition-colors text-xl">
                             <i class="fas fa-external-link-alt mr-2"></i> เริ่มทำ
                         </button>
                     </div>`;
                     break;
-                default:
-                    contentHtml = `<p>ไม่รู้จักประเภทของบทเรียนนี้</p>`;
+                default: contentHtml = `<p>ไม่รู้จักประเภทของบทเรียนนี้</p>`;
             }
             contentArea.innerHTML = contentHtml;
             updateNavigationButtons();
             renderCompletionButton();
-        }
+        };
         
-        function markLessonComplete() {
+        const markLessonComplete = () => {
             const courseId = appState.currentCourse.courseId;
             const index = appState.currentLessonIndex;
+            if (!appState.lessonProgress[courseId]) appState.lessonProgress[courseId] = {};
             appState.lessonProgress[courseId][index] = true;
             sessionStorage.setItem(`progress_${courseId}`, JSON.stringify(appState.lessonProgress[courseId]));
             renderLessonList();
             renderCompletionButton();
-            updateDashboardProgress();
-        }
+        };
 
-        function renderCompletionButton() {
+        const renderCompletionButton = () => {
             const completionArea = document.getElementById('lesson-completion-area');
             const courseId = appState.currentCourse.courseId;
-            const isCompleted = appState.lessonProgress[courseId][appState.currentLessonIndex];
+            const isCompleted = appState.lessonProgress[courseId]?.[appState.currentLessonIndex];
             
             if (isCompleted) {
                 completionArea.innerHTML = `<div class="text-green-400 font-bold flex items-center"><i class="fas fa-check-circle mr-2"></i> เรียนแล้ว</div>`;
@@ -432,38 +483,45 @@
                 completionArea.innerHTML = '';
                 completionArea.appendChild(button);
             }
-        }
+        };
 
-        function updateNavigationButtons() {
+        const updateNavigationButtons = () => {
             const prevBtn = document.getElementById('prev-lesson-btn');
             const nextBtn = document.getElementById('next-lesson-btn');
-            const totalLessons = appState.currentCourse.lessons.length;
+            const flatLessons = appState.currentCourse.flatLessons;
+            const currentIndex = appState.currentLessonIndex;
 
-            prevBtn.classList.toggle('opacity-50', appState.currentLessonIndex <= 0);
-            prevBtn.classList.toggle('pointer-events-none', appState.currentLessonIndex <= 0);
+            const canGoPrev = currentIndex > 0;
+            prevBtn.classList.toggle('opacity-50', !canGoPrev);
+            prevBtn.classList.toggle('pointer-events-none', !canGoPrev);
 
-            nextBtn.classList.toggle('opacity-50', appState.currentLessonIndex >= totalLessons - 1);
-            nextBtn.classList.toggle('pointer-events-none', appState.currentLessonIndex >= totalLessons - 1);
-        }
+            const canGoNext = currentIndex < flatLessons.length - 1;
+            nextBtn.classList.toggle('opacity-50', !canGoNext);
+            nextBtn.classList.toggle('pointer-events-none', !canGoNext);
+        };
 
-        function navigateLesson(direction) {
+        const navigateLesson = (direction) => {
             const newIndex = appState.currentLessonIndex + direction;
-            if (newIndex >= 0 && newIndex < appState.currentCourse.lessons.length) {
-                appState.currentLessonIndex = newIndex;
-                renderLessonContent(newIndex);
-                renderLessonList();
+            const flatLessons = appState.currentCourse.flatLessons;
+            if (newIndex >= 0 && newIndex < flatLessons.length) {
+                const newLesson = flatLessons.find(l => l.flatIndex === newIndex);
+                if (newLesson) {
+                    renderLessonContent(newLesson);
+                    renderLessonList();
+                }
             }
-        }
+        };
 
-        // --- Event Listeners & Initialization ---
-        async function handleLogin(event) {
+        const handleLogin = async (event) => {
             event.preventDefault();
+            const loginBtn = document.getElementById('login-submit-btn');
+            const loginError = document.getElementById('login-error');
             loginError.textContent = '';
             loginBtn.disabled = true;
             loginBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp;กำลังตรวจสอบ...`;
             
             try {
-                const userData = await api.login(loginForm.username.value, loginForm.password.value);
+                const userData = await api.login(document.getElementById('username').value, document.getElementById('password').value);
                 appState.currentUser = userData;
                 sessionStorage.setItem('user', JSON.stringify(userData));
                 renderDashboard(userData);
@@ -473,30 +531,56 @@
                 loginBtn.disabled = false;
                 loginBtn.textContent = 'เข้าสู่ระบบ';
             }
-        }
+        };
 
-        function handleLogout() {
+        const handleLogout = () => {
             sessionStorage.clear();
             appState.currentUser = null;
             appState.currentCourse = null;
             appState.lessonProgress = {};
-            loginForm.reset();
-            loginError.textContent = '';
+            document.getElementById('login-form').reset();
+            document.getElementById('login-error').textContent = '';
             showPage('login');
-        }
+        };
 
-        function init() {
-            loginForm.addEventListener('submit', handleLogin);
+        const updateClock = () => {
+            const now = new Date();
+            const timeOpts = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            const dateOpts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            
+            const timeString = now.toLocaleTimeString('th-TH', timeOpts);
+            const dateString = now.toLocaleDateString('th-TH', dateOpts);
+
+            document.getElementById('dashboard-clock').textContent = timeString;
+            document.getElementById('dashboard-date').textContent = dateString;
+            document.getElementById('course-clock').textContent = timeString;
+            document.getElementById('course-date').textContent = dateString;
+        };
+        
+        const toggleMobileMenu = (show) => {
+            if (show) {
+                sidebar.classList.remove('-translate-x-full');
+                sidebarOverlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            }
+        };
+
+        const init = () => {
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
             document.getElementById('logout-btn').addEventListener('click', handleLogout);
             document.getElementById('back-to-dashboard').addEventListener('click', () => {
-                if (appState.currentUser) {
-                    renderDashboard(appState.currentUser);
-                } else {
-                    handleLogout();
-                }
+                if (appState.currentUser) renderDashboard(appState.currentUser);
+                else handleLogout();
             });
             document.getElementById('prev-lesson-btn').addEventListener('click', () => navigateLesson(-1));
             document.getElementById('next-lesson-btn').addEventListener('click', () => navigateLesson(1));
+            
+            // Mobile menu listeners
+            openSidebarBtn.addEventListener('click', () => toggleMobileMenu(true));
+            closeSidebarBtn.addEventListener('click', () => toggleMobileMenu(false));
+            sidebarOverlay.addEventListener('click', () => toggleMobileMenu(false));
 
             const storedUser = sessionStorage.getItem('user');
             if (storedUser) {
@@ -505,7 +589,11 @@
             } else {
                 showPage('login');
             }
-        }
+            
+            if (appState.clockInterval) clearInterval(appState.clockInterval);
+            updateClock();
+            appState.clockInterval = setInterval(updateClock, 1000);
+        };
 
         document.addEventListener('DOMContentLoaded', init);
     </script>
