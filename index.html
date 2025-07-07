@@ -10,52 +10,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Anuphan', sans-serif;
-            background-color: #141414;
-            color: #fff;
-        }
-        .course-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-        }
-        .course-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        .course-card .info {
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent);
-        }
-        .progress-bar-bg {
-            background-color: #404040;
-        }
-        .progress-bar-fill {
-            background-color: #E50914;
-        }
-        .btn-brand {
-            background-color: #E50914;
-            color: white;
-            transition: background-color 0.3s;
-        }
-        .btn-brand:hover:not(:disabled) {
-            background-color: #f6121d;
-        }
-        .btn-brand:disabled {
-            background-color: #99050c;
-            cursor: not-allowed;
-        }
-        .form-input {
-            background-color: #333;
-            border: 1px solid #555;
-            color: white;
-        }
+        body { font-family: 'Anuphan', sans-serif; background-color: #141414; color: #fff; }
+        .course-card { transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; }
+        .course-card:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .course-card .info { background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent); }
+        .progress-bar-bg { background-color: #404040; }
+        .progress-bar-fill { background-color: #E50914; transition: width 0.5s ease-in-out; }
+        .btn-brand { background-color: #E50914; color: white; transition: background-color 0.3s; }
+        .btn-brand:hover:not(:disabled) { background-color: #f6121d; }
+        .btn-brand:disabled { background-color: #99050c; cursor: not-allowed; }
+        .form-input { background-color: #333; border: 1px solid #555; color: white; }
+        .modal-backdrop { background-color: rgba(0,0,0,0.7); }
+        .floating-btn { position: fixed; bottom: 30px; right: 30px; z-index: 100; }
     </style>
 </head>
 <body>
 
-    <!-- Main Container -->
     <div id="app" class="min-h-screen">
-
         <!-- Login Page -->
         <div id="login-page" class="flex items-center justify-center min-h-screen bg-cover" style="background-image: url('https://placehold.co/1920x1080/000000/333333?text=.')">
             <div class="w-full max-w-md p-8 space-y-8 bg-black bg-opacity-75 rounded-lg">
@@ -64,59 +35,49 @@
                     <h2 class="mt-2 text-2xl font-semibold">Self-Learning System</h2>
                 </div>
                 <form id="login-form" class="space-y-6">
-                    <div>
-                        <label for="username" class="sr-only">ชื่อผู้ใช้</label>
-                        <input id="username" name="username" type="text" required class="form-input w-full p-4 rounded-md" placeholder="ชื่อผู้ใช้ (Username)">
-                    </div>
-                    <div>
-                        <label for="password" class="sr-only">รหัสผ่าน</label>
-                        <input id="password" name="password" type="password" required class="form-input w-full p-4 rounded-md" placeholder="รหัสผ่าน (Password)">
-                    </div>
+                    <input id="username" name="username" type="text" required class="form-input w-full p-4 rounded-md" placeholder="ชื่อผู้ใช้ (Username)">
+                    <input id="password" name="password" type="password" required class="form-input w-full p-4 rounded-md" placeholder="รหัสผ่าน (Password)">
                     <p id="login-error" class="text-red-500 text-center h-4"></p>
-                    <div>
-                        <button type="submit" id="login-submit-btn" class="w-full btn-brand font-bold py-3 px-4 rounded-md text-lg">
-                            เข้าสู่ระบบ
-                        </button>
-                    </div>
+                    <button type="submit" id="login-submit-btn" class="w-full btn-brand font-bold py-3 px-4 rounded-md text-lg">เข้าสู่ระบบ</button>
                 </form>
             </div>
         </div>
 
-        <!-- Dashboard Page (Main Content) -->
+        <!-- Dashboard Page -->
         <div id="dashboard-page" class="hidden">
             <header class="p-4 flex justify-between items-center bg-black bg-opacity-50 sticky top-0 z-50">
                 <h1 class="text-3xl font-bold text-red-600">Kru P'Tah</h1>
                 <div class="flex items-center">
                     <span id="user-display-name" class="mr-4 text-gray-300"></span>
+                    <a href="/macros/s/YOUR_WEB_APP_ID/exec?page=admin" id="admin-panel-btn" class="hidden bg-blue-600 hover:bg-blue-500 py-2 px-4 rounded-md mr-4">Admin Panel</a>
                     <button id="logout-btn" class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md">ออกจากระบบ</button>
                 </div>
             </header>
             <main class="p-4 md:p-8">
                 <h2 class="text-3xl font-semibold mb-6">คอร์สเรียนของฉัน</h2>
-                <div id="course-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                    <!-- Course cards will be injected here by JavaScript -->
-                </div>
-                 <div id="no-courses" class="hidden text-center py-20">
+                <div id="course-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"></div>
+                <div id="no-courses" class="hidden text-center py-20">
                     <h3 class="text-2xl text-gray-400">คุณยังไม่ได้ลงทะเบียนเรียน</h3>
-                    <p class="text-gray-500 mt-2">โปรดติดต่อผู้ดูแลระบบเพื่อทำการลงทะเบียน</p>
                 </div>
             </main>
         </div>
 
         <!-- Course Detail Page -->
         <div id="course-page" class="hidden">
+            <!-- Header -->
             <header class="p-4 flex justify-between items-center bg-black bg-opacity-50 sticky top-0 z-50">
-                 <button id="back-to-dashboard" class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md">
-                    <i class="fas fa-arrow-left mr-2"></i> กลับ
-                </button>
+                <button id="back-to-dashboard" class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md"><i class="fas fa-arrow-left mr-2"></i> กลับ</button>
                 <h2 id="course-page-title" class="text-2xl font-bold text-center flex-grow"></h2>
-                <div class="w-24"></div> <!-- Spacer -->
+                <!-- Focus Timer -->
+                <div id="focus-timer" class="text-right">
+                    <span id="timer-display" class="text-2xl font-mono mr-2">25:00</span>
+                    <button id="timer-toggle" class="bg-green-600 hover:bg-green-500 py-2 px-3 rounded-md"><i class="fas fa-play"></i></button>
+                    <button id="timer-reset" class="bg-yellow-600 hover:bg-yellow-500 py-2 px-3 rounded-md"><i class="fas fa-sync"></i></button>
+                </div>
             </header>
             <main class="p-4 md:p-8">
                 <div class="max-w-7xl mx-auto">
-                    <!-- Video Player -->
                     <div id="video-container" class="mb-8 rounded-lg overflow-hidden shadow-lg bg-black"></div>
-                    <!-- Course Content Tabs -->
                     <div class="mb-4 border-b border-gray-700">
                         <nav id="course-tabs" class="-mb-px flex space-x-8" aria-label="Tabs"></nav>
                     </div>
@@ -126,98 +87,137 @@
         </div>
     </div>
 
+    <!-- Q&A Floating Button -->
+    <button id="qa-btn" class="hidden floating-btn btn-brand w-16 h-16 rounded-full flex items-center justify-center shadow-lg">
+        <i class="fas fa-question text-2xl"></i>
+    </button>
+
+    <!-- Q&A Modal -->
+    <div id="qa-modal" class="hidden fixed inset-0 z-[101] flex items-center justify-center modal-backdrop">
+        <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-lg p-6">
+            <h3 class="text-2xl font-semibold mb-4">ส่งคำถามถึงผู้สอน</h3>
+            <form id="qa-form">
+                <textarea id="qa-question" class="form-input w-full p-3 rounded-md" rows="5" placeholder="พิมพ์คำถามของคุณที่นี่..." required></textarea>
+                <p id="qa-status" class="text-green-400 h-4 mt-2"></p>
+                <div class="mt-4 flex justify-end space-x-3">
+                    <button type="button" id="qa-modal-close" class="bg-gray-600 hover:bg-gray-500 py-2 px-4 rounded-md">ปิด</button>
+                    <button type="submit" id="qa-submit-btn" class="btn-brand py-2 px-4 rounded-md">ส่งคำถาม</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
     <script>
-        // --- LIVE API CONNECTION ---
-        const webAppUrl = 'https://script.google.com/macros/s/AKfycbyUWO-BGs76jDbLCZrnFaWwhFvULFU-ISZlou7JFWAGH-8Pu5i5_bvadis3SYhMQet5Pw/exec';
+        // --- CONFIGURATION ---
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbwwq5ADsjVts27e0125Vy5seWqXAI-QwiET1FfWs9WiM73ZJWm3jy-i5aeEoXhy1O-fwQ/exec'; // !!! REPLACE WITH YOUR DEPLOYED WEB APP URL !!!
 
-        const api = {
-            login: async function(username, password) {
-                const url = `${webAppUrl}?action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error('เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์');
-                }
-                const result = await response.json();
-                if (result.status === 'success') {
-                    return result.data;
-                } else {
-                    throw new Error(result.message || 'เกิดข้อผิดพลาดที่ไม่รู้จัก');
-                }
-            },
-            
-            getCourseDetails: async function(courseId) {
-                const url = `${webAppUrl}?action=getCourseDetails&courseId=${encodeURIComponent(courseId)}`;
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error('ไม่สามารถโหลดข้อมูลคอร์สได้');
-                }
-                const result = await response.json();
-                if (result.status === 'success') {
-                    return result.data;
-                } else {
-                    throw new Error(result.message || 'ไม่พบข้อมูลคอร์ส');
-                }
+        // --- API HANDLER ---
+        async function apiRequest(action, data = {}) {
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            if (user && user.email) {
+                data.userEmail = user.email; // Automatically add userEmail for authenticated requests
             }
-        };
 
-        // --- APPLICATION LOGIC ---
-        const loginPage = document.getElementById('login-page');
-        const dashboardPage = document.getElementById('dashboard-page');
-        const coursePage = document.getElementById('course-page');
-        const loginForm = document.getElementById('login-form');
-        const loginError = document.getElementById('login-error');
-        const logoutBtn = document.getElementById('logout-btn');
-        const userDisplayNameEl = document.getElementById('user-display-name');
-        const courseGrid = document.getElementById('course-grid');
-        const noCoursesMessage = document.getElementById('no-courses');
-        
-        let countdownIntervals = {};
+            const response = await fetch(webAppUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action, data }),
+                redirect: 'follow'
+            });
 
-        function showPage(page) {
-            loginPage.classList.add('hidden');
-            dashboardPage.classList.add('hidden');
-            coursePage.classList.add('hidden');
-            page.classList.remove('hidden');
-            page.classList.add('flex'); // Use flex for login page centering
-            if (page !== loginPage) page.classList.remove('flex');
+            if (!response.ok) throw new Error('เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์');
+            const result = await response.json();
+            if (result.status === 'success') return result.data;
+            throw new Error(result.message || 'เกิดข้อผิดพลาดที่ไม่รู้จัก');
         }
 
-        function renderDashboard(userData) {
-            userDisplayNameEl.textContent = `สวัสดี, ${userData.name}`;
-            courseGrid.innerHTML = '';
+        // --- GLOBAL ELEMENTS & STATE ---
+        const pages = {
+            login: document.getElementById('login-page'),
+            dashboard: document.getElementById('dashboard-page'),
+            course: document.getElementById('course-page')
+        };
+        let countdownIntervals = {};
+        let currentCourseId = null;
+
+        // --- PAGE MANAGEMENT ---
+        function showPage(pageName) {
+            Object.values(pages).forEach(p => p.classList.add('hidden'));
+            pages[pageName].classList.remove('hidden');
+            document.getElementById('qa-btn').classList.toggle('hidden', pageName !== 'course');
+        }
+
+        // --- AUTHENTICATION ---
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('login-submit-btn');
+            const errorEl = document.getElementById('login-error');
+            errorEl.textContent = '';
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp;กำลังตรวจสอบ...`;
             
+            try {
+                const { username, password } = e.target.elements;
+                const userData = await apiRequest('login', { username: username.value, password: password.value });
+                sessionStorage.setItem('user', JSON.stringify(userData));
+                initDashboard(userData);
+            } catch (error) {
+                errorEl.textContent = error.message;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'เข้าสู่ระบบ';
+            }
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', async () => {
+            try {
+                await apiRequest('recordLogout');
+            } catch (error) {
+                console.error('Failed to log logout event:', error);
+            }
+            sessionStorage.removeItem('user');
+            Object.values(countdownIntervals).forEach(clearInterval);
+            document.getElementById('login-form').reset();
+            document.getElementById('login-error').textContent = '';
+            showPage('login');
+        });
+
+        // --- DASHBOARD ---
+        function initDashboard(userData) {
+            document.getElementById('user-display-name').textContent = `สวัสดี, ${userData.name}`;
+            const adminBtn = document.getElementById('admin-panel-btn');
+            adminBtn.classList.toggle('hidden', !userData.isAdmin);
+            // Replace YOUR_WEB_APP_ID in the href
+            if (userData.isAdmin) {
+                adminBtn.href = adminBtn.href.replace('YOUR_WEB_APP_ID', webAppUrl.split('/')[5]);
+            }
+
+
+            const courseGrid = document.getElementById('course-grid');
+            const noCoursesMsg = document.getElementById('no-courses');
+            courseGrid.innerHTML = '';
             Object.values(countdownIntervals).forEach(clearInterval);
             countdownIntervals = {};
 
             if (!userData.courses || userData.courses.length === 0) {
-                noCoursesMessage.classList.remove('hidden');
+                noCoursesMsg.classList.remove('hidden');
             } else {
-                noCoursesMessage.classList.add('hidden');
+                noCoursesMsg.classList.add('hidden');
                 userData.courses.forEach(course => {
                     const card = document.createElement('div');
                     card.className = 'course-card bg-gray-900 rounded-lg shadow-md cursor-pointer group';
                     
                     const endDate = new Date(course.enrollment.startDate);
                     endDate.setDate(endDate.getDate() + parseInt(course.enrollment.durationDays, 10));
-                    
-                    const timeLeft = endDate - new Date();
-                    let countdownText = 'หมดอายุแล้ว';
-                    let isExpired = timeLeft < 0;
+                    const isExpired = (endDate - new Date()) < 0;
 
-                    if (!isExpired) {
-                        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                        countdownText = `เหลือเวลา ${days} วัน`;
-                    }
-                    
                     card.innerHTML = `
                         <div class="relative aspect-[4/3]">
                             <img src="${course.coverImg}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/141414/FFFFFF?text=Image+Not+Found';" alt="${course.title}" class="w-full h-full object-cover rounded-t-lg">
-                            <div class="info absolute bottom-0 left-0 right-0 p-3 text-white">
-                                <h3 class="font-bold text-lg truncate">${course.title}</h3>
-                            </div>
+                            <div class="info absolute bottom-0 left-0 right-0 p-3 text-white"><h3 class="font-bold text-lg truncate">${course.title}</h3></div>
                         </div>
                         <div class="p-3">
-                            <p class="text-xs ${isExpired ? 'text-gray-500' : 'text-red-500'} font-semibold mb-2" id="countdown-${course.id}">${countdownText}</p>
+                            <p class="text-xs ${isExpired ? 'text-gray-500' : 'text-red-500'} font-semibold mb-2" id="countdown-${course.id}">${isExpired ? 'หมดอายุแล้ว' : 'กำลังคำนวณ...'}</p>
                             <div class="progress-bar-bg w-full h-2 rounded-full">
                                 <div class="progress-bar-fill h-2 rounded-full" style="width: ${course.progress || 0}%"></div>
                             </div>
@@ -228,205 +228,204 @@
                     if (!isExpired) {
                         card.dataset.courseId = course.id;
                         card.addEventListener('click', () => showCourseDetail(course.id));
+                        const countdownEl = card.querySelector(`#countdown-${course.id}`);
+                        const updateCountdown = () => {
+                           const timeLeft = endDate - new Date();
+                           if (timeLeft < 0) {
+                               countdownEl.textContent = 'หมดอายุแล้ว';
+                               if(countdownIntervals[course.id]) clearInterval(countdownIntervals[course.id]);
+                           } else {
+                               const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                               countdownEl.textContent = `เหลือเวลา ${days} วัน`;
+                           }
+                        };
+                        updateCountdown();
+                        countdownIntervals[course.id] = setInterval(updateCountdown, 1000 * 60 * 60); // Update every hour
                     } else {
                         card.style.cursor = 'not-allowed';
                         card.style.opacity = '0.6';
                     }
                     courseGrid.appendChild(card);
-
-                    if (!isExpired) {
-                       countdownIntervals[course.id] = setInterval(() => {
-                           const newTimeLeft = endDate - new Date();
-                           const countdownEl = document.getElementById(`countdown-${course.id}`);
-                           if (newTimeLeft < 0) {
-                               if (countdownEl) countdownEl.textContent = 'หมดอายุแล้ว';
-                               clearInterval(countdownIntervals[course.id]);
-                           } else {
-                               const days = Math.floor(newTimeLeft / (1000 * 60 * 60 * 24));
-                               if (countdownEl) countdownEl.textContent = `เหลือเวลา ${days} วัน`;
-                           }
-                       }, 1000 * 60 * 60 * 24);
-                    }
                 });
             }
-            showPage(dashboardPage);
+            showPage('dashboard');
         }
 
-        async function handleLogin(event) {
-            event.preventDefault();
-            const username = loginForm.username.value;
-            const password = loginForm.password.value;
-            const loginButton = document.getElementById('login-submit-btn');
-
-            loginError.textContent = '';
-            loginButton.disabled = true;
-            loginButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp;กำลังตรวจสอบ...`;
-            
-            try {
-                const userData = await api.login(username, password);
-                sessionStorage.setItem('user', JSON.stringify(userData));
-                renderDashboard(userData);
-            } catch (error) {
-                loginError.textContent = error.message;
-            } finally {
-                loginButton.disabled = false;
-                loginButton.textContent = 'เข้าสู่ระบบ';
-            }
-        }
-
-        function handleLogout() {
-            sessionStorage.removeItem('user');
-            Object.values(countdownIntervals).forEach(clearInterval);
-            countdownIntervals = {};
-            loginForm.reset();
-            loginError.textContent = '';
-            showPage(loginPage);
-        }
-        
-        loginForm.addEventListener('submit', handleLogin);
-        logoutBtn.addEventListener('click', handleLogout);
-        
+        // --- COURSE PAGE ---
         document.getElementById('back-to-dashboard').addEventListener('click', () => {
-            const storedUser = sessionStorage.getItem('user');
-            if(storedUser) {
-                renderDashboard(JSON.parse(storedUser));
-            } else {
-                handleLogout();
-            }
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            if(user) initDashboard(user);
+            else showPage('login');
         });
-        
+
         async function showCourseDetail(courseId) {
+            currentCourseId = courseId;
             document.getElementById('course-page-title').textContent = 'กำลังโหลด...';
-            showPage(coursePage);
+            showPage('course');
             try {
-                const courseData = await api.getCourseDetails(courseId);
+                const courseData = await apiRequest('getCourseDetails', { courseId });
                 document.getElementById('course-page-title').textContent = courseData.title;
-
-                const tabs = [];
-                const contents = {};
-                
-                // Video Player and Playlist
-                const videoContainer = document.getElementById('video-container');
-                if(courseData.content.videos && courseData.content.videos.length > 0) {
-                    tabs.push('วิดีโอ');
-                    const videoList = courseData.content.videos.map((video, index) =>
-                        `<li class="p-3 hover:bg-gray-600 cursor-pointer rounded-md ${index === 0 ? 'bg-red-600 text-white' : ''}" data-url="${video.url}">${video.title}</li>`
-                    ).join('');
-                    contents['วิดีโอ'] = `<ul class="space-y-2">${videoList}</ul>`;
-                    videoContainer.innerHTML = `<iframe class="w-full aspect-video" src="${courseData.content.videos[0].url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                } else {
-                    videoContainer.innerHTML = `<div class="w-full aspect-video bg-black flex items-center justify-center"><p class="text-gray-500">ไม่พบวิดีโอสำหรับคอร์สนี้</p></div>`;
-                }
-                
-                // Documents with auto preview/download
-                if (courseData.content.documents && courseData.content.documents.length > 0) {
-                  tabs.push('เอกสาร');
-                  const docList = courseData.content.documents.map(doc => {
-                    const match = doc.url.match(/\/d\/([\w-]+)/);
-                    const id = match ? match[1] : '';
-                    return `
-                      <li class="flex justify-between border-b border-gray-700 py-2">
-                        <span>${doc.title}</span>
-                        <div class="space-x-4">
-                          <a href="https://drive.google.com/file/d/${id}/preview" target="_blank" class="text-blue-400">🔍 Preview</a>
-                          <a href="https://drive.google.com/uc?export=download&id=${id}" class="text-green-400">⬇️ Download</a>
-                        </div>
-                      </li>`;
-                  }).join('');
-                  contents['เอกสาร'] = `<ul>${docList}</ul>`;
-                }
-            
-                // Exercises
-                if (courseData.content.exercises && courseData.content.exercises.length > 0) {
-                    tabs.push('แบบฝึกหัด');
-                    const exList = courseData.content.exercises.map(ex =>
-                        `<button class="ex-btn bg-gray-700 hover:bg-gray-600 p-2 rounded-md block w-full text-left mb-2" data-url="${ex.url}">${ex.title}</button>`
-                    ).join('');
-                    contents['แบบฝึกหัด'] = `
-                        <div class="mb-4">${exList}</div>
-                        <div id="exercise-frame" class="mt-4 hidden">
-                            <iframe src="" width="100%" height="600" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    `;
-                }
-            
-                // Exam
-                if (courseData.content.exam && courseData.content.exam.length > 0) {
-                    tabs.push('แบบทดสอบ');
-                    const examList = courseData.content.exam.map(ex =>
-                        `<button class="exam-btn bg-gray-700 hover:bg-gray-600 p-2 rounded-md block w-full text-left mb-2" data-url="${ex.url}">${ex.title}</button>`
-                    ).join('');
-                    contents['แบบทดสอบ'] = `
-                        <div class="mb-4">${examList}</div>
-                        <div id="exam-frame" class="mt-4 hidden">
-                            <iframe src="" width="100%" height="600" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    `;
-                }
-
-                const courseTabs = document.getElementById('course-tabs');
-                const tabContent = document.getElementById('tab-content');
-                courseTabs.innerHTML = tabs.map((tab, index) =>
-                    `<a href="#" class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg ${index === 0 ? 'border-red-500 text-red-500' : 'border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-300'}" data-tab="${tab}">${tab}</a>`
-                ).join('');
-
-                function switchTab(tabName) {
-                    document.querySelectorAll('.tab-link').forEach(link => {
-                        link.classList.toggle('border-red-500', link.dataset.tab === tabName);
-                        link.classList.toggle('text-red-500', link.dataset.tab === tabName);
-                        link.classList.toggle('border-transparent', link.dataset.tab !== tabName);
-                        link.classList.toggle('text-gray-400', link.dataset.tab !== tabName);
-                    });
-                    tabContent.innerHTML = contents[tabName] || '<p>ไม่พบเนื้อหา</p>';
-                }
-
-                courseTabs.addEventListener('click', e => {
-                    e.preventDefault();
-                    if(e.target.classList.contains('tab-link')) {
-                        switchTab(e.target.dataset.tab);
-                    }
-                });
-
-                tabContent.addEventListener('click', e => {
-                // วิดีโอ
-                if (e.target.closest('li[data-url]')) {
-                    const li = e.target.closest('li[data-url]');
-                    videoContainer.innerHTML = `<iframe class="w-full aspect-video" src="${li.dataset.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                    document.querySelectorAll('#tab-content li').forEach(item => item.classList.remove('bg-red-600', 'text-white'));
-                    li.classList.add('bg-red-600', 'text-white');
-                }
-            
-                // แบบฝึกหัด (ฝัง Google Form)
-                if (e.target.classList.contains('ex-btn')) {
-                    const url = e.target.dataset.url;
-                    const frame = document.querySelector('#exercise-frame');
-                    frame.classList.remove('hidden');
-                    frame.querySelector('iframe').src = url;
-                }
-            
-                // แบบทดสอบ (ฝัง Google Form)
-                if (e.target.classList.contains('exam-btn')) {
-                    const url = e.target.dataset.url;
-                    const frame = document.querySelector('#exam-frame');
-                    frame.classList.remove('hidden');
-                    frame.querySelector('iframe').src = url;
-                }
-            });
-                
-                if (tabs.length > 0) switchTab(tabs[0]);
-
+                renderCourseContent(courseData);
             } catch (error) {
                 document.getElementById('course-page-title').textContent = 'เกิดข้อผิดพลาด';
                 document.getElementById('video-container').innerHTML = `<div class="w-full aspect-video bg-black flex items-center justify-center"><p class="text-red-500">${error.message}</p></div>`;
             }
         }
+
+        function renderCourseContent(courseData) {
+            const tabs = [];
+            const contents = {};
+            const videoContainer = document.getElementById('video-container');
+
+            // Videos
+            if(courseData.content.videos && courseData.content.videos.length > 0) {
+                tabs.push('วิดีโอ');
+                const videoList = courseData.content.videos.map((video) =>
+                    `<li class="p-3 hover:bg-gray-600 cursor-pointer rounded-md" data-url="${video.url}">${video.title}</li>`
+                ).join('');
+                contents['วิดีโอ'] = `<ul class="space-y-2">${videoList}</ul>`;
+                videoContainer.innerHTML = `<iframe class="w-full aspect-video" src="${courseData.content.videos[0].url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            } else {
+                videoContainer.innerHTML = `<div class="w-full aspect-video bg-black flex items-center justify-center"><p class="text-gray-500">ไม่พบวิดีโอ</p></div>`;
+            }
+            
+            // Documents
+            if (courseData.content.documents && courseData.content.documents.length > 0) {
+                tabs.push('เอกสาร');
+                contents['เอกสาร'] = `<ul>${courseData.content.documents.map(doc => {
+                    const id = (doc.url.match(/\/d\/([\w-]+)/) || [])[1];
+                    return `<li class="flex justify-between items-center border-b border-gray-700 py-3"><span>${doc.title}</span><div class="space-x-4"><a href="https://drive.google.com/file/d/${id}/preview" target="_blank" class="text-blue-400 hover:underline">🔍 ดูตัวอย่าง</a><a href="https://drive.google.com/uc?export=download&id=${id}" class="text-green-400 hover:underline">⬇️ ดาวน์โหลด</a></div></li>`;
+                }).join('')}</ul>`;
+            }
         
+            // Exercises & Exams
+            ['exercises', 'exam'].forEach(type => {
+                const title = type === 'exercises' ? 'แบบฝึกหัด' : 'แบบทดสอบ';
+                if (courseData.content[type] && courseData.content[type].length > 0) {
+                    tabs.push(title);
+                    const list = courseData.content[type].map(item =>
+                        `<button class="content-btn bg-gray-700 hover:bg-gray-600 p-3 rounded-md block w-full text-left mb-2" data-url="${item.url}">${item.title}</button>`
+                    ).join('');
+                    contents[title] = `<div class="mb-4">${list}</div><div class="content-frame-container mt-4 hidden"><iframe src="" width="100%" height="800" frameborder="0" allowfullscreen></iframe></div>`;
+                }
+            });
+
+            const courseTabs = document.getElementById('course-tabs');
+            const tabContent = document.getElementById('tab-content');
+            courseTabs.innerHTML = tabs.map((tab, index) =>
+                `<a href="#" class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg ${index === 0 ? 'border-red-500 text-red-500' : 'border-transparent text-gray-400 hover:text-gray-200'}" data-tab="${tab}">${tab}</a>`
+            ).join('');
+
+            function switchTab(tabName) {
+                document.querySelectorAll('.tab-link').forEach(link => {
+                    const isActive = link.dataset.tab === tabName;
+                    link.classList.toggle('border-red-500', isActive);
+                    link.classList.toggle('text-red-500', isActive);
+                    link.classList.toggle('border-transparent', !isActive);
+                    link.classList.toggle('text-gray-400', !isActive);
+                });
+                tabContent.innerHTML = contents[tabName] || '<p>ไม่พบเนื้อหา</p>';
+            }
+
+            courseTabs.addEventListener('click', e => {
+                e.preventDefault();
+                if(e.target.matches('.tab-link')) switchTab(e.target.dataset.tab);
+            });
+
+            tabContent.addEventListener('click', e => {
+                const videoLi = e.target.closest('li[data-url]');
+                if (videoLi) {
+                    videoContainer.innerHTML = `<iframe class="w-full aspect-video" src="${videoLi.dataset.url}" frameborder="0" allowfullscreen></iframe>`;
+                    document.querySelectorAll('#tab-content li').forEach(item => item.classList.remove('bg-red-600', 'text-white'));
+                    videoLi.classList.add('bg-red-600', 'text-white');
+                }
+                const contentBtn = e.target.closest('.content-btn');
+                if (contentBtn) {
+                    const frameContainer = tabContent.querySelector('.content-frame-container');
+                    frameContainer.classList.remove('hidden');
+                    frameContainer.querySelector('iframe').src = contentBtn.dataset.url;
+                }
+            });
+            
+            if (tabs.length > 0) switchTab(tabs[0]);
+        }
+
+        // --- Q&A FEATURE ---
+        const qaModal = document.getElementById('qa-modal');
+        document.getElementById('qa-btn').addEventListener('click', () => qaModal.classList.remove('hidden'));
+        document.getElementById('qa-modal-close').addEventListener('click', () => qaModal.classList.add('hidden'));
+        document.getElementById('qa-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('qa-submit-btn');
+            const statusEl = document.getElementById('qa-status');
+            const question = document.getElementById('qa-question').value;
+            
+            btn.disabled = true;
+            statusEl.textContent = 'กำลังส่ง...';
+            try {
+                await apiRequest('submitQuestion', { courseId: currentCourseId, question });
+                statusEl.textContent = 'ส่งคำถามสำเร็จ!';
+                document.getElementById('qa-question').value = '';
+                setTimeout(() => {
+                    qaModal.classList.add('hidden');
+                    statusEl.textContent = '';
+                }, 2000);
+            } catch (error) {
+                statusEl.textContent = `ผิดพลาด: ${error.message}`;
+            } finally {
+                btn.disabled = false;
+            }
+        });
+
+        // --- FOCUS TIMER ---
+        let timerInterval;
+        let timerSeconds = 1500; // 25 minutes
+        let isTimerRunning = false;
+        const timerDisplay = document.getElementById('timer-display');
+        const timerToggleBtn = document.getElementById('timer-toggle');
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timerSeconds / 60);
+            const seconds = timerSeconds % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        timerToggleBtn.addEventListener('click', () => {
+            isTimerRunning = !isTimerRunning;
+            timerToggleBtn.innerHTML = `<i class="fas ${isTimerRunning ? 'fa-pause' : 'fa-play'}"></i>`;
+            if (isTimerRunning) {
+                timerInterval = setInterval(() => {
+                    timerSeconds--;
+                    if (timerSeconds < 0) {
+                        clearInterval(timerInterval);
+                        alert('หมดเวลาพักแล้ว! กลับมาเรียนกันต่อ');
+                        isTimerRunning = false;
+                        timerToggleBtn.innerHTML = `<i class="fas fa-play"></i>`;
+                    } else {
+                        updateTimerDisplay();
+                    }
+                }, 1000);
+            } else {
+                clearInterval(timerInterval);
+            }
+        });
+
+        document.getElementById('timer-reset').addEventListener('click', () => {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            timerSeconds = 1500;
+            updateTimerDisplay();
+            timerToggleBtn.innerHTML = `<i class="fas fa-play"></i>`;
+        });
+
+        // --- INITIALIZATION ---
         (function init() {
+            updateTimerDisplay(); // Init timer display
             const storedUser = sessionStorage.getItem('user');
             if (storedUser) {
-                renderDashboard(JSON.parse(storedUser));
+                initDashboard(JSON.parse(storedUser));
             } else {
-                showPage(loginPage);
+                showPage('login');
             }
         })();
     </script>
