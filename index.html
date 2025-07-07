@@ -1,471 +1,513 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="th">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6d6d6d; -webkit-text-stroke: #6d6d6d}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6b0001; -webkit-text-stroke: #6b0001}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #fb0007; -webkit-text-stroke: #fb0007}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #0000ff; -webkit-text-stroke: #0000ff}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #093c94; -webkit-text-stroke: #093c94}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000; min-height: 16.0px}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #4d5055; -webkit-text-stroke: #4d5055}
-    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #18702b; -webkit-text-stroke: #18702b}
-    span.s1 {font-kerning: none; background-color: #ecf1f7}
-    span.s2 {font-kerning: none; color: #fb0007; background-color: #ecf1f7; -webkit-text-stroke: 0px #fb0007}
-    span.s3 {font-kerning: none; color: #2a2a2a; background-color: #ecf1f7; -webkit-text-stroke: 0px #2a2a2a}
-    span.s4 {font-kerning: none; color: #000000; background-color: #ecf1f7; -webkit-text-stroke: 0px #000000}
-    span.s5 {font-kerning: none; color: #0000ff; background-color: #ecf1f7; -webkit-text-stroke: 0px #0000ff}
-    span.s6 {font-kerning: none; color: #6b0001; background-color: #ecf1f7; -webkit-text-stroke: 0px #6b0001}
-    span.s7 {font-kerning: none; color: #18702b; background-color: #ecf1f7; -webkit-text-stroke: 0px #18702b}
-    span.s8 {font-kerning: none; color: #093c94; background-color: #ecf1f7; -webkit-text-stroke: 0px #093c94}
-    span.s9 {font-kerning: none; color: #137646; background-color: #ecf1f7; -webkit-text-stroke: 0px #137646}
-    span.s10 {font-kerning: none}
-    span.s11 {font-kerning: none; color: #6f0ec3; background-color: #ecf1f7; -webkit-text-stroke: 0px #6f0ec3}
-    span.s12 {font-kerning: none; color: #4d5055; background-color: #ecf1f7; -webkit-text-stroke: 0px #4d5055}
-    span.s13 {font-kerning: none; color: #0e6e6d; background-color: #ecf1f7; -webkit-text-stroke: 0px #0e6e6d}
-    span.s14 {font-kerning: none; color: #a4450b; background-color: #ecf1f7; -webkit-text-stroke: 0px #a4450b}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenLearn - Self-Learning System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /*
+         * --- Zen Design & Color Palette ---
+         * Inspired by nature, simplicity, and tranquility.
+         * We use a dark, desaturated slate for the base, a calming sage for primary actions,
+         * and a warm amber for highlights, creating a focused yet gentle environment.
+        */
+        :root {
+            --bg-dark-slate: #1A202C; /* Base background - like a dark stone */
+            --bg-light-slate: #2D3748; /* Lighter elements, cards */
+            --bg-hover-slate: #4A5568; /* Hover states */
+            --text-primary: #E2E8F0;   /* Main text - soft white */
+            --text-secondary: #A0AEC0; /* Subtitles, less important text */
+            --brand-sage: #689F84;     /* Primary buttons, progress - calming green */
+            --brand-sage-hover: #5A8A72;
+            --highlight-amber: #F6AD55; /* Highlights, notifications - warm, natural light */
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif; /* Changed font to Kanit */
+            background-color: var(--bg-dark-slate);
+            color: var(--text-primary);
+        }
+
+        /* --- Component Styling --- */
+        .form-input {
+            background-color: var(--bg-light-slate);
+            border: 1px solid var(--bg-hover-slate);
+            color: var(--text-primary);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--brand-sage);
+            box-shadow: 0 0 0 2px rgba(104, 159, 132, 0.5);
+        }
+        .btn-brand {
+            background-color: var(--brand-sage);
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .btn-brand:hover:not(:disabled) {
+            background-color: var(--brand-sage-hover);
+        }
+        .btn-brand:disabled {
+            background-color: var(--bg-hover-slate);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        .course-card {
+            background-color: var(--bg-light-slate);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        .progress-bar-fill {
+            background-color: var(--brand-sage);
+        }
+        .progress-bar-bg {
+            background-color: var(--bg-hover-slate);
+        }
+
+        /* --- Page Transitions --- */
+        .page {
+            display: none; /* Initially hide all pages */
+        }
+        .page.active {
+            display: block; /* Show active page */
+        }
+
+        /* --- Zen Learning Environment --- */
+        .course-sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: var(--bg-hover-slate) var(--bg-light-slate);
+        }
+        .course-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .course-sidebar::-webkit-scrollbar-track {
+            background: var(--bg-light-slate);
+        }
+        .course-sidebar::-webkit-scrollbar-thumb {
+            background-color: var(--bg-hover-slate);
+            border-radius: 10px;
+        }
+        .lesson-item.completed-lesson {
+            color: var(--text-secondary);
+        }
+        .lesson-item.active-lesson {
+            background-color: var(--brand-sage);
+            color: white;
+        }
+        .lesson-item.active-lesson .lesson-title {
+            text-decoration: none;
+        }
+        .lesson-item .lesson-title {
+             text-decoration: none;
+        }
+        .lesson-item.completed-lesson .lesson-title {
+            text-decoration: line-through;
+        }
+    </style>
 </head>
-<body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE</span><span class="s2"> html</span><span class="s1">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;</span><span class="s1">html</span><span class="s4"> </span><span class="s2">lang</span><span class="s3">=</span><span class="s5">"th"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">meta</span><span class="s4"> </span><span class="s1">charset</span><span class="s3">=</span><span class="s5">"UTF-8"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">meta</span><span class="s4"> </span><span class="s2">name</span><span class="s3">=</span><span class="s1">"viewport"</span><span class="s4"> </span><span class="s2">content</span><span class="s3">=</span><span class="s1">"width=device-width, initial-scale=1.0"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">title</span><span class="s3">&gt;</span><span class="s1">ระบบเรียนออนไลน์กับพี่ต้าห์</span><span class="s3">&lt;/</span><span class="s6">title</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">script</span><span class="s4"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://cdn.tailwindcss.com"</span><span class="s3">&gt;&lt;/</span><span class="s6">script</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">link</span><span class="s4"> </span><span class="s2">rel</span><span class="s3">=</span><span class="s1">"stylesheet"</span><span class="s4"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">link</span><span class="s4"> </span><span class="s2">rel</span><span class="s3">=</span><span class="s1">"preconnect"</span><span class="s4"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"https://fonts.googleapis.com"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">link</span><span class="s4"> </span><span class="s2">rel</span><span class="s3">=</span><span class="s1">"preconnect"</span><span class="s4"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"https://fonts.gstatic.com"</span><span class="s4"> </span><span class="s2">crossorigin</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">link</span><span class="s4"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&amp;display=swap"</span><span class="s4"> </span><span class="s2">rel</span><span class="s3">=</span><span class="s1">"stylesheet"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s6">body</span><span class="s4"> { </span><span class="s1">font-family:</span><span class="s4"> </span><span class="s7">'Anuphan'</span><span class="s4">, </span><span class="s8">sans-serif</span><span class="s4">; </span><span class="s1">background-color:</span><span class="s4"> </span><span class="s8">#141414</span><span class="s4">; </span><span class="s1">color:</span><span class="s4"> </span><span class="s8">#fff</span><span class="s4">; }</span></p>
-<p class="p6"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s6">.course-card</span><span class="s4"> { </span><span class="s2">transition:</span><span class="s4"> </span><span class="s1">transform</span><span class="s4"> </span><span class="s9">0.3s</span><span class="s4"> </span><span class="s1">ease</span><span class="s4">, </span><span class="s1">box-shadow</span><span class="s4"> </span><span class="s9">0.3s</span><span class="s4"> </span><span class="s1">ease</span><span class="s4">; </span><span class="s2">overflow:</span><span class="s4"> </span><span class="s1">hidden</span><span class="s4">; }</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">.course-card:hover</span><span class="s1"> { </span><span class="s2">transform:</span><span class="s1"> </span><span class="s8">scale(</span><span class="s9">1.05</span><span class="s8">)</span><span class="s1">; </span><span class="s2">box-shadow:</span><span class="s1"> </span><span class="s9">0</span><span class="s1"> </span><span class="s9">10px</span><span class="s1"> </span><span class="s9">20px</span><span class="s1"> </span><span class="s8">rgba(</span><span class="s9">0</span><span class="s1">,</span><span class="s9">0</span><span class="s1">,</span><span class="s9">0</span><span class="s1">,</span><span class="s9">0.5</span><span class="s8">)</span><span class="s1">; }</span></p>
-<p class="p6"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s6">.course-card</span><span class="s4"> </span><span class="s6">.info</span><span class="s4"> { </span><span class="s2">background:</span><span class="s4"> </span><span class="s1">linear-gradient(to</span><span class="s4"> </span><span class="s1">top</span><span class="s4">, </span><span class="s1">rgba(</span><span class="s9">0</span><span class="s4">,</span><span class="s9">0</span><span class="s4">,</span><span class="s9">0</span><span class="s4">,</span><span class="s9">0.9</span><span class="s1">)</span><span class="s4"> </span><span class="s9">20%</span><span class="s4">, </span><span class="s1">transparent)</span><span class="s4">; }</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s6">.progress-bar-bg</span><span class="s4"> { </span><span class="s1">background-color:</span><span class="s4"> </span><span class="s8">#404040</span><span class="s4">; }</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s6">.progress-bar-fill</span><span class="s4"> { </span><span class="s1">background-color:</span><span class="s4"> </span><span class="s8">#E50914</span><span class="s4">; </span><span class="s1">transition:</span><span class="s4"> </span><span class="s8">width</span><span class="s4"> </span><span class="s9">0.5s</span><span class="s4"> </span><span class="s8">ease-in-out</span><span class="s4">; }</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s6">.btn-brand</span><span class="s4"> { </span><span class="s1">background-color:</span><span class="s4"> </span><span class="s8">#E50914</span><span class="s4">; </span><span class="s1">color:</span><span class="s4"> </span><span class="s8">white</span><span class="s4">; </span><span class="s1">transition:</span><span class="s4"> </span><span class="s8">background-color</span><span class="s4"> </span><span class="s9">0.3s</span><span class="s4">; }</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.btn-brand:hover:not</span><span class="s4">(</span><span class="s1">:disabled</span><span class="s4">) { </span><span class="s2">background-color:</span><span class="s4"> </span><span class="s8">#f6121d</span><span class="s4">; }</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s6">.btn-brand:disabled</span><span class="s4"> { </span><span class="s1">background-color:</span><span class="s4"> </span><span class="s8">#99050c</span><span class="s4">; </span><span class="s1">cursor:</span><span class="s4"> </span><span class="s8">not-allowed</span><span class="s4">; }</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s6">.form-input</span><span class="s4"> { </span><span class="s1">background-color:</span><span class="s4"> </span><span class="s8">#333</span><span class="s4">; </span><span class="s1">border:</span><span class="s4"> </span><span class="s9">1px</span><span class="s4"> </span><span class="s8">solid</span><span class="s4"> </span><span class="s8">#555</span><span class="s4">; </span><span class="s1">color:</span><span class="s4"> </span><span class="s8">white</span><span class="s4">; }</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">.modal-backdrop</span><span class="s1"> { </span><span class="s2">background-color:</span><span class="s1"> </span><span class="s8">rgba(</span><span class="s9">0</span><span class="s1">,</span><span class="s9">0</span><span class="s1">,</span><span class="s9">0</span><span class="s1">,</span><span class="s9">0.7</span><span class="s8">)</span><span class="s1">; }</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s6">.floating-btn</span><span class="s4"> { </span><span class="s1">position:</span><span class="s4"> </span><span class="s8">fixed</span><span class="s4">; </span><span class="s1">bottom:</span><span class="s4"> </span><span class="s9">30px</span><span class="s4">; </span><span class="s1">right:</span><span class="s4"> </span><span class="s9">30px</span><span class="s4">; </span><span class="s1">z-index:</span><span class="s4"> </span><span class="s9">100</span><span class="s4">; }</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;/</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;</span><span class="s1">body</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"app"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"min-h-screen"</span><span class="s3">&gt;</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;!-- Login Page --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"login-page"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex items-center justify-center min-h-screen bg-cover"</span><span class="s4"> </span><span class="s2">style</span><span class="s3">=</span><span class="s1">"background-image: url('https://placehold.co/1920x1080/000000/333333?text=.')"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full max-w-md p-8 space-y-8 bg-black bg-opacity-75 rounded-lg"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-center"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">h1</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-4xl font-bold text-red-600"</span><span class="s3">&gt;</span><span class="s4">Kru P'Tah</span><span class="s3">&lt;/</span><span class="s6">h1</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">h2</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"mt-2 text-2xl font-semibold"</span><span class="s3">&gt;</span><span class="s1">Self-Learning System</span><span class="s3">&lt;/</span><span class="s6">h2</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">form</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"login-form"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"space-y-6"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">input</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"username"</span><span class="s4"> </span><span class="s2">name</span><span class="s3">=</span><span class="s1">"username"</span><span class="s4"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"text"</span><span class="s4"> </span><span class="s2">required</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"form-input w-full p-4 rounded-md"</span><span class="s4"> </span><span class="s2">placeholder</span><span class="s3">=</span><span class="s1">"ชื่อผู้ใช้ (Username)"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">input</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"password"</span><span class="s4"> </span><span class="s2">name</span><span class="s3">=</span><span class="s1">"password"</span><span class="s4"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"password"</span><span class="s4"> </span><span class="s2">required</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"form-input w-full p-4 rounded-md"</span><span class="s4"> </span><span class="s2">placeholder</span><span class="s3">=</span><span class="s1">"รหัสผ่าน (Password)"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">p</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"login-error"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-red-500 text-center h-4"</span><span class="s3">&gt;&lt;/</span><span class="s6">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"submit"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"login-submit-btn"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full btn-brand font-bold py-3 px-4 rounded-md text-lg"</span><span class="s3">&gt;</span><span class="s4">เข้าสู่ระบบ</span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">form</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;!-- Dashboard Page --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"dashboard-page"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"hidden"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">header</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-4 flex justify-between items-center bg-black bg-opacity-50 sticky top-0 z-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">h1</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-3xl font-bold text-red-600"</span><span class="s3">&gt;</span><span class="s4">Kru P'Tah</span><span class="s3">&lt;/</span><span class="s6">h1</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex items-center"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"user-display-name"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"mr-4 text-gray-300"</span><span class="s3">&gt;&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">a</span><span class="s4"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"/macros/s/YOUR_WEB_APP_ID/exec?page=admin"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"admin-panel-btn"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"hidden bg-blue-600 hover:bg-blue-500 py-2 px-4 rounded-md mr-4"</span><span class="s3">&gt;</span><span class="s4">Admin Panel</span><span class="s3">&lt;/</span><span class="s6">a</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"logout-btn"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md"</span><span class="s3">&gt;</span><span class="s4">ออกจากระบบ</span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">header</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">main</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"p-4 md:p-8"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">h2</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-3xl font-semibold mb-6"</span><span class="s3">&gt;</span><span class="s1">คอร์สเรียนของฉัน</span><span class="s3">&lt;/</span><span class="s6">h2</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"course-grid"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"</span><span class="s3">&gt;&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"no-courses"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"hidden text-center py-20"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">h3</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-2xl text-gray-400"</span><span class="s3">&gt;</span><span class="s1">คุณยังไม่ได้ลงทะเบียนเรียน</span><span class="s3">&lt;/</span><span class="s6">h3</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">main</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;!-- Course Detail Page --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"course-page"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"hidden"</span><span class="s3">&gt;</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;!-- Header --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">header</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-4 flex justify-between items-center bg-black bg-opacity-50 sticky top-0 z-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"back-to-dashboard"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md"</span><span class="s3">&gt;&lt;</span><span class="s6">i</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"fas fa-arrow-left mr-2"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;</span><span class="s4"> กลับ</span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">h2</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"course-page-title"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-2xl font-bold text-center flex-grow"</span><span class="s3">&gt;&lt;/</span><span class="s6">h2</span><span class="s3">&gt;</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s1">&lt;!-- Focus Timer --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"focus-timer"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-right"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"timer-display"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-2xl font-mono mr-2"</span><span class="s3">&gt;</span><span class="s4">25:00</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"timer-toggle"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-green-600 hover:bg-green-500 py-2 px-3 rounded-md"</span><span class="s3">&gt;&lt;</span><span class="s6">i</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"fas fa-play"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"timer-reset"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-yellow-600 hover:bg-yellow-500 py-2 px-3 rounded-md"</span><span class="s3">&gt;&lt;</span><span class="s6">i</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"fas fa-sync"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">header</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">main</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"p-4 md:p-8"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"max-w-7xl mx-auto"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"video-container"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"mb-8 rounded-lg overflow-hidden shadow-lg bg-black"</span><span class="s3">&gt;&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"mb-4 border-b border-gray-700"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">nav</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"course-tabs"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"-mb-px flex space-x-8"</span><span class="s4"> </span><span class="s2">aria-label</span><span class="s3">=</span><span class="s1">"Tabs"</span><span class="s3">&gt;&lt;/</span><span class="s6">nav</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"tab-content"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-4 bg-gray-800 rounded-lg min-h-[400px]"</span><span class="s3">&gt;&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">main</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Q&amp;A Floating Button --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"qa-btn"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"hidden floating-btn btn-brand w-16 h-16 rounded-full flex items-center justify-center shadow-lg"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">i</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"fas fa-question text-2xl"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">button</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Q&amp;A Modal --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"qa-modal"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"hidden fixed inset-0 z-[101] flex items-center justify-center modal-backdrop"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-gray-800 rounded-lg shadow-xl w-full max-w-lg p-6"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">h3</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-2xl font-semibold mb-4"</span><span class="s3">&gt;</span><span class="s1">ส่งคำถามถึงผู้สอน</span><span class="s3">&lt;/</span><span class="s6">h3</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">form</span><span class="s1"> </span><span class="s2">id</span><span class="s3">=</span><span class="s5">"qa-form"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">textarea</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"qa-question"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"form-input w-full p-3 rounded-md"</span><span class="s4"> </span><span class="s2">rows</span><span class="s3">=</span><span class="s1">"5"</span><span class="s4"> </span><span class="s2">placeholder</span><span class="s3">=</span><span class="s1">"พิมพ์คำถามของคุณที่นี่..."</span><span class="s4"> </span><span class="s2">required</span><span class="s3">&gt;&lt;/</span><span class="s6">textarea</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">p</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"qa-status"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-green-400 h-4 mt-2"</span><span class="s3">&gt;&lt;/</span><span class="s6">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"mt-4 flex justify-end space-x-3"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"button"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"qa-modal-close"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-gray-600 hover:bg-gray-500 py-2 px-4 rounded-md"</span><span class="s3">&gt;</span><span class="s4">ปิด</span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"submit"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"qa-submit-btn"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"btn-brand py-2 px-4 rounded-md"</span><span class="s3">&gt;</span><span class="s4">ส่งคำถาม</span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">form</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- CONFIGURATION ---</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s11">const</span><span class="s4"> webAppUrl = </span><span class="s1">'https://script.google.com/macros/s/AKfycbyEp94nsAG2ZGeoeys4trXnRfUGDev7vm9wEnpF1Qtb-WWub7gvqblAG8WHb6fJd_ouVw/exec'</span><span class="s4">; </span><span class="s12">// !!! REPLACE WITH YOUR DEPLOYED WEB APP URL !!!</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- API HANDLER ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">async</span><span class="s1"> </span><span class="s11">function</span><span class="s1"> apiRequest(action, data = {}) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> user = </span><span class="s13">JSON</span><span class="s1">.parse(sessionStorage.getItem(</span><span class="s7">'user'</span><span class="s1">));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">if</span><span class="s1"> (user &amp;&amp; user.email) {</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">                </span>data.userEmail = user.email; </span><span class="s1">// Automatically add userEmail for authenticated requests</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> response = </span><span class="s11">await</span><span class="s1"> fetch(webAppUrl, {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>method: </span><span class="s7">'POST'</span><span class="s1">,</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>headers: { </span><span class="s7">'Content-Type'</span><span class="s1">: </span><span class="s7">'application/json'</span><span class="s1"> },</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>body: </span><span class="s13">JSON</span><span class="s1">.stringify({ action, data }),</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>redirect: </span><span class="s7">'follow'</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s11">if</span><span class="s4"> (!response.ok) </span><span class="s11">throw</span><span class="s4"> </span><span class="s11">new</span><span class="s4"> </span><span class="s13">Error</span><span class="s4">(</span><span class="s1">'เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์'</span><span class="s4">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> result = </span><span class="s11">await</span><span class="s1"> response.json();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">if</span><span class="s1"> (result.status === </span><span class="s7">'success'</span><span class="s1">) </span><span class="s11">return</span><span class="s1"> result.data;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">throw</span><span class="s1"> </span><span class="s11">new</span><span class="s1"> </span><span class="s13">Error</span><span class="s1">(result.message || </span><span class="s7">'เกิดข้อผิดพลาดที่ไม่รู้จัก'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- GLOBAL ELEMENTS &amp; STATE ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">const</span><span class="s1"> pages = {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>login: document.getElementById(</span><span class="s7">'login-page'</span><span class="s1">),</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>dashboard: document.getElementById(</span><span class="s7">'dashboard-page'</span><span class="s1">),</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>course: document.getElementById(</span><span class="s7">'course-page'</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">let</span><span class="s1"> countdownIntervals = {};</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">let</span><span class="s1"> currentCourseId = </span><span class="s11">null</span><span class="s1">;</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- PAGE MANAGEMENT ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">function</span><span class="s1"> showPage(pageName) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s13">Object</span><span class="s1">.values(pages).forEach(p =&gt; p.classList.add(</span><span class="s7">'hidden'</span><span class="s1">));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>pages[pageName].classList.remove(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'qa-btn'</span><span class="s1">).classList.toggle(</span><span class="s7">'hidden'</span><span class="s1">, pageName !== </span><span class="s7">'course'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- AUTHENTICATION ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById(</span><span class="s7">'login-form'</span><span class="s1">).addEventListener(</span><span class="s7">'submit'</span><span class="s1">, </span><span class="s11">async</span><span class="s1"> (e) =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>e.preventDefault();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> btn = document.getElementById(</span><span class="s7">'login-submit-btn'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> errorEl = document.getElementById(</span><span class="s7">'login-error'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>errorEl.textContent = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>btn.disabled = </span><span class="s11">true</span><span class="s1">;</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">            </span>btn.innerHTML = </span><span class="s1">`&lt;i class="fas fa-spinner fa-spin"&gt;&lt;/i&gt;&amp;nbsp;&amp;nbsp;กำลังตรวจสอบ...`</span><span class="s4">;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">try</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">const</span><span class="s1"> { username, password } = e.target.elements;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">const</span><span class="s1"> userData = </span><span class="s11">await</span><span class="s1"> apiRequest(</span><span class="s7">'login'</span><span class="s1">, { username: username.value, password: password.value });</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>sessionStorage.setItem(</span><span class="s7">'user'</span><span class="s1">, </span><span class="s13">JSON</span><span class="s1">.stringify(userData));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>initDashboard(userData);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s11">catch</span><span class="s1"> (error) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>errorEl.textContent = error.message;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s11">finally</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>btn.disabled = </span><span class="s11">false</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>btn.textContent = </span><span class="s7">'เข้าสู่ระบบ'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById(</span><span class="s7">'logout-btn'</span><span class="s1">).addEventListener(</span><span class="s7">'click'</span><span class="s1">, </span><span class="s11">async</span><span class="s1"> () =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">try</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">await</span><span class="s1"> apiRequest(</span><span class="s7">'recordLogout'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s11">catch</span><span class="s1"> (error) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>console.error(</span><span class="s7">'Failed to log logout event:'</span><span class="s1">, error);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>sessionStorage.removeItem(</span><span class="s7">'user'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s13">Object</span><span class="s1">.values(countdownIntervals).forEach(clearInterval);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'login-form'</span><span class="s1">).reset();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'login-error'</span><span class="s1">).textContent = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>showPage(</span><span class="s7">'login'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- DASHBOARD ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">function</span><span class="s1"> initDashboard(userData) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'user-display-name'</span><span class="s1">).textContent = </span><span class="s7">`สวัสดี, </span><span class="s1">${userData.name}</span><span class="s7">`</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> adminBtn = document.getElementById(</span><span class="s7">'admin-panel-btn'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>adminBtn.classList.toggle(</span><span class="s7">'hidden'</span><span class="s1">, !userData.isAdmin);</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// Replace YOUR_WEB_APP_ID in the href</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">if</span><span class="s1"> (userData.isAdmin) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>adminBtn.href = adminBtn.href.replace(</span><span class="s7">'YOUR_WEB_APP_ID'</span><span class="s1">, webAppUrl.split(</span><span class="s7">'/'</span><span class="s1">)[</span><span class="s14">5</span><span class="s1">]);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> courseGrid = document.getElementById(</span><span class="s7">'course-grid'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> noCoursesMsg = document.getElementById(</span><span class="s7">'no-courses'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>courseGrid.innerHTML = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s13">Object</span><span class="s1">.values(countdownIntervals).forEach(clearInterval);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>countdownIntervals = {};</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">if</span><span class="s1"> (!userData.courses || userData.courses.length === </span><span class="s14">0</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>noCoursesMsg.classList.remove(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s11">else</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>noCoursesMsg.classList.add(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>userData.courses.forEach(course =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s11">const</span><span class="s1"> card = document.createElement(</span><span class="s7">'div'</span><span class="s1">);</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">                    </span>card.className = </span><span class="s1">'course-card bg-gray-900 rounded-lg shadow-md cursor-pointer group'</span><span class="s4">;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s11">const</span><span class="s1"> endDate = </span><span class="s11">new</span><span class="s1"> </span><span class="s13">Date</span><span class="s1">(course.enrollment.startDate);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>endDate.setDate(endDate.getDate() + parseInt(course.enrollment.durationDays, </span><span class="s14">10</span><span class="s1">));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s11">const</span><span class="s1"> isExpired = (endDate - </span><span class="s11">new</span><span class="s1"> </span><span class="s13">Date</span><span class="s1">()) &lt; </span><span class="s14">0</span><span class="s1">;</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>card.innerHTML = </span><span class="s7">`</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="relative aspect-[4/3]"&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;img src="</span><span class="s4">${course.coverImg}</span><span class="s1">" onerror="this.onerror=null;this.src='https://placehold.co/600x400/141414/FFFFFF?text=Image+Not+Found';" alt="</span><span class="s4">${course.title}</span><span class="s1">" class="w-full h-full object-cover rounded-t-lg"&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div class="info absolute bottom-0 left-0 right-0 p-3 text-white"&gt;&lt;h3 class="font-bold text-lg truncate"&gt;</span><span class="s4">${course.title}</span><span class="s1">&lt;/h3&gt;&lt;/div&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="p-3"&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-xs </span><span class="s4">${isExpired ? </span><span class="s1">'text-gray-500'</span><span class="s4"> : </span><span class="s1">'text-red-500'</span><span class="s4">}</span><span class="s1"> font-semibold mb-2" id="countdown-</span><span class="s4">${course.id}</span><span class="s1">"&gt;</span><span class="s4">${isExpired ? </span><span class="s1">'หมดอายุแล้ว'</span><span class="s4"> : </span><span class="s1">'กำลังคำนวณ...'</span><span class="s4">}</span><span class="s1">&lt;/p&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div class="progress-bar-bg w-full h-2 rounded-full"&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div class="progress-bar-fill h-2 rounded-full" style="width: </span><span class="s4">${course.progress || </span><span class="s14">0</span><span class="s4">}</span><span class="s1">%"&gt;&lt;/div&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-xs text-gray-400 mt-1 text-right"&gt;</span><span class="s4">${course.progress || </span><span class="s14">0</span><span class="s4">}</span><span class="s1">% Complete&lt;/p&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                    </span>`</span><span class="s4">;</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s11">if</span><span class="s1"> (!isExpired) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>card.dataset.courseId = course.id;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>card.addEventListener(</span><span class="s7">'click'</span><span class="s1">, () =&gt; showCourseDetail(course.id));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s11">const</span><span class="s1"> countdownEl = card.querySelector(</span><span class="s7">`#countdown-</span><span class="s1">${course.id}</span><span class="s7">`</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s11">const</span><span class="s1"> updateCountdown = () =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                           </span></span><span class="s11">const</span><span class="s1"> timeLeft = endDate - </span><span class="s11">new</span><span class="s1"> </span><span class="s13">Date</span><span class="s1">();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                           </span></span><span class="s11">if</span><span class="s1"> (timeLeft &lt; </span><span class="s14">0</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                               </span>countdownEl.textContent = </span><span class="s7">'หมดอายุแล้ว'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                               </span></span><span class="s11">if</span><span class="s1">(countdownIntervals[course.id]) clearInterval(countdownIntervals[course.id]);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                           </span>} </span><span class="s11">else</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                               </span></span><span class="s11">const</span><span class="s1"> days = </span><span class="s13">Math</span><span class="s1">.floor(timeLeft / (</span><span class="s14">1000</span><span class="s1"> * </span><span class="s14">60</span><span class="s1"> * </span><span class="s14">60</span><span class="s1"> * </span><span class="s14">24</span><span class="s1">));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                               </span>countdownEl.textContent = </span><span class="s7">`เหลือเวลา </span><span class="s1">${days}</span><span class="s7"> วัน`</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                           </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>};</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>updateCountdown();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>countdownIntervals[course.id] = setInterval(updateCountdown, </span><span class="s14">1000</span><span class="s1"> * </span><span class="s14">60</span><span class="s1"> * </span><span class="s14">60</span><span class="s1">); </span><span class="s12">// Update every hour</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>} </span><span class="s11">else</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>card.style.cursor = </span><span class="s7">'not-allowed'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>card.style.opacity = </span><span class="s7">'0.6'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>courseGrid.appendChild(card);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>showPage(</span><span class="s7">'dashboard'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- COURSE PAGE ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById(</span><span class="s7">'back-to-dashboard'</span><span class="s1">).addEventListener(</span><span class="s7">'click'</span><span class="s1">, () =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> user = </span><span class="s13">JSON</span><span class="s1">.parse(sessionStorage.getItem(</span><span class="s7">'user'</span><span class="s1">));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">if</span><span class="s1">(user) initDashboard(user);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">else</span><span class="s1"> showPage(</span><span class="s7">'login'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">async</span><span class="s1"> </span><span class="s11">function</span><span class="s1"> showCourseDetail(courseId) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>currentCourseId = courseId;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'course-page-title'</span><span class="s1">).textContent = </span><span class="s7">'กำลังโหลด...'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>showPage(</span><span class="s7">'course'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">try</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">const</span><span class="s1"> courseData = </span><span class="s11">await</span><span class="s1"> apiRequest(</span><span class="s7">'getCourseDetails'</span><span class="s1">, { courseId });</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById(</span><span class="s7">'course-page-title'</span><span class="s1">).textContent = courseData.title;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>renderCourseContent(courseData);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s11">catch</span><span class="s1"> (error) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById(</span><span class="s7">'course-page-title'</span><span class="s1">).textContent = </span><span class="s7">'เกิดข้อผิดพลาด'</span><span class="s1">;</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">                </span>document.getElementById(</span><span class="s1">'video-container'</span><span class="s4">).innerHTML = </span><span class="s1">`&lt;div class="w-full aspect-video bg-black flex items-center justify-center"&gt;&lt;p class="text-red-500"&gt;</span><span class="s4">${error.message}</span><span class="s1">&lt;/p&gt;&lt;/div&gt;`</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">function</span><span class="s1"> renderCourseContent(courseData) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> tabs = [];</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> contents = {};</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> videoContainer = document.getElementById(</span><span class="s7">'video-container'</span><span class="s1">);</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">// Videos</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">if</span><span class="s1">(courseData.content.videos &amp;&amp; courseData.content.videos.length &gt; </span><span class="s14">0</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>tabs.push(</span><span class="s7">'วิดีโอ'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">const</span><span class="s1"> videoList = courseData.content.videos.map((video) =&gt;</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s1">`&lt;li class="p-3 hover:bg-gray-600 cursor-pointer rounded-md" data-url="</span><span class="s4">${video.url}</span><span class="s1">"&gt;</span><span class="s4">${video.title}</span><span class="s1">&lt;/li&gt;`</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>).join(</span><span class="s7">''</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>contents[</span><span class="s7">'วิดีโอ'</span><span class="s1">] = </span><span class="s7">`&lt;ul class="space-y-2"&gt;</span><span class="s1">${videoList}</span><span class="s7">&lt;/ul&gt;`</span><span class="s1">;</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">                </span>videoContainer.innerHTML = </span><span class="s1">`&lt;iframe class="w-full aspect-video" src="</span><span class="s4">${courseData.content.videos[</span><span class="s14">0</span><span class="s4">].url}</span><span class="s1">" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;`</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s11">else</span><span class="s1"> {</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">                </span>videoContainer.innerHTML = </span><span class="s1">`&lt;div class="w-full aspect-video bg-black flex items-center justify-center"&gt;&lt;p class="text-gray-500"&gt;ไม่พบวิดีโอ&lt;/p&gt;&lt;/div&gt;`</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">// Documents</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">if</span><span class="s1"> (courseData.content.documents &amp;&amp; courseData.content.documents.length &gt; </span><span class="s14">0</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>tabs.push(</span><span class="s7">'เอกสาร'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>contents[</span><span class="s7">'เอกสาร'</span><span class="s1">] = </span><span class="s7">`&lt;ul&gt;</span><span class="s1">${courseData.content.documents.map(doc =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s11">const</span><span class="s1"> id = (doc.url.match(</span><span class="s6">/\/d\/([\w-]+)/</span><span class="s1">) || [])[</span><span class="s14">1</span><span class="s1">];</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s11">return</span><span class="s4"> </span><span class="s1">`&lt;li class="flex justify-between items-center border-b border-gray-700 py-3"&gt;&lt;span&gt;</span><span class="s4">${doc.title}</span><span class="s1">&lt;/span&gt;&lt;div class="space-x-4"&gt;&lt;a href="https://drive.google.com/file/d/</span><span class="s4">${id}</span><span class="s1">/preview" target="_blank" class="text-blue-400 hover:underline"&gt;🔍 ดูตัวอย่าง&lt;/a&gt;&lt;a href="https://drive.google.com/uc?export=download&amp;id=</span><span class="s4">${id}</span><span class="s1">" class="text-green-400 hover:underline"&gt;⬇️ ดาวน์โหลด&lt;/a&gt;&lt;/div&gt;&lt;/li&gt;`</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>}).join(</span><span class="s7">''</span><span class="s1">)}</span><span class="s7">&lt;/ul&gt;`</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// Exercises &amp; Exams</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>[</span><span class="s7">'exercises'</span><span class="s1">, </span><span class="s7">'exam'</span><span class="s1">].forEach(type =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">const</span><span class="s1"> title = type === </span><span class="s7">'exercises'</span><span class="s1"> ? </span><span class="s7">'แบบฝึกหัด'</span><span class="s1"> : </span><span class="s7">'แบบทดสอบ'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">if</span><span class="s1"> (courseData.content[type] &amp;&amp; courseData.content[type].length &gt; </span><span class="s14">0</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>tabs.push(title);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s11">const</span><span class="s1"> list = courseData.content[type].map(item =&gt;</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s1">`&lt;button class="content-btn bg-gray-700 hover:bg-gray-600 p-3 rounded-md block w-full text-left mb-2" data-url="</span><span class="s4">${item.url}</span><span class="s1">"&gt;</span><span class="s4">${item.title}</span><span class="s1">&lt;/button&gt;`</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>).join(</span><span class="s7">''</span><span class="s1">);</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">                    </span>contents[title] = </span><span class="s1">`&lt;div class="mb-4"&gt;</span><span class="s4">${list}</span><span class="s1">&lt;/div&gt;&lt;div class="content-frame-container mt-4 hidden"&gt;&lt;iframe src="" width="100%" height="800" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;`</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> courseTabs = document.getElementById(</span><span class="s7">'course-tabs'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> tabContent = document.getElementById(</span><span class="s7">'tab-content'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>courseTabs.innerHTML = tabs.map((tab, index) =&gt;</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s1">`&lt;a href="#" class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg </span><span class="s4">${index === </span><span class="s14">0</span><span class="s4"> ? </span><span class="s1">'border-red-500 text-red-500'</span><span class="s4"> : </span><span class="s1">'border-transparent text-gray-400 hover:text-gray-200'</span><span class="s4">}</span><span class="s1">" data-tab="</span><span class="s4">${tab}</span><span class="s1">"&gt;</span><span class="s4">${tab}</span><span class="s1">&lt;/a&gt;`</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>).join(</span><span class="s7">''</span><span class="s1">);</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">function</span><span class="s1"> switchTab(tabName) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>document.querySelectorAll(</span><span class="s7">'.tab-link'</span><span class="s1">).forEach(link =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s11">const</span><span class="s1"> isActive = link.dataset.tab === tabName;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>link.classList.toggle(</span><span class="s7">'border-red-500'</span><span class="s1">, isActive);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>link.classList.toggle(</span><span class="s7">'text-red-500'</span><span class="s1">, isActive);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>link.classList.toggle(</span><span class="s7">'border-transparent'</span><span class="s1">, !isActive);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>link.classList.toggle(</span><span class="s7">'text-gray-400'</span><span class="s1">, !isActive);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>tabContent.innerHTML = contents[tabName] || </span><span class="s7">'&lt;p&gt;ไม่พบเนื้อหา&lt;/p&gt;'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>courseTabs.addEventListener(</span><span class="s7">'click'</span><span class="s1">, e =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>e.preventDefault();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">if</span><span class="s1">(e.target.matches(</span><span class="s7">'.tab-link'</span><span class="s1">)) switchTab(e.target.dataset.tab);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>tabContent.addEventListener(</span><span class="s7">'click'</span><span class="s1">, e =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">const</span><span class="s1"> videoLi = e.target.closest(</span><span class="s7">'li[data-url]'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">if</span><span class="s1"> (videoLi) {</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">                    </span>videoContainer.innerHTML = </span><span class="s1">`&lt;iframe class="w-full aspect-video" src="</span><span class="s4">${videoLi.dataset.url}</span><span class="s1">" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;`</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>document.querySelectorAll(</span><span class="s7">'#tab-content li'</span><span class="s1">).forEach(item =&gt; item.classList.remove(</span><span class="s7">'bg-red-600'</span><span class="s1">, </span><span class="s7">'text-white'</span><span class="s1">));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>videoLi.classList.add(</span><span class="s7">'bg-red-600'</span><span class="s1">, </span><span class="s7">'text-white'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">const</span><span class="s1"> contentBtn = e.target.closest(</span><span class="s7">'.content-btn'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">if</span><span class="s1"> (contentBtn) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s11">const</span><span class="s1"> frameContainer = tabContent.querySelector(</span><span class="s7">'.content-frame-container'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>frameContainer.classList.remove(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>frameContainer.querySelector(</span><span class="s7">'iframe'</span><span class="s1">).src = contentBtn.dataset.url;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">if</span><span class="s1"> (tabs.length &gt; </span><span class="s14">0</span><span class="s1">) switchTab(tabs[</span><span class="s14">0</span><span class="s1">]);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- Q&amp;A FEATURE ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">const</span><span class="s1"> qaModal = document.getElementById(</span><span class="s7">'qa-modal'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById(</span><span class="s7">'qa-btn'</span><span class="s1">).addEventListener(</span><span class="s7">'click'</span><span class="s1">, () =&gt; qaModal.classList.remove(</span><span class="s7">'hidden'</span><span class="s1">));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById(</span><span class="s7">'qa-modal-close'</span><span class="s1">).addEventListener(</span><span class="s7">'click'</span><span class="s1">, () =&gt; qaModal.classList.add(</span><span class="s7">'hidden'</span><span class="s1">));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById(</span><span class="s7">'qa-form'</span><span class="s1">).addEventListener(</span><span class="s7">'submit'</span><span class="s1">, </span><span class="s11">async</span><span class="s1"> (e) =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>e.preventDefault();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> btn = document.getElementById(</span><span class="s7">'qa-submit-btn'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> statusEl = document.getElementById(</span><span class="s7">'qa-status'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> question = document.getElementById(</span><span class="s7">'qa-question'</span><span class="s1">).value;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>btn.disabled = </span><span class="s11">true</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>statusEl.textContent = </span><span class="s7">'กำลังส่ง...'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">try</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s11">await</span><span class="s1"> apiRequest(</span><span class="s7">'submitQuestion'</span><span class="s1">, { courseId: currentCourseId, question });</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>statusEl.textContent = </span><span class="s7">'ส่งคำถามสำเร็จ!'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById(</span><span class="s7">'qa-question'</span><span class="s1">).value = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>setTimeout(() =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>qaModal.classList.add(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>statusEl.textContent = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>}, </span><span class="s14">2000</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s11">catch</span><span class="s1"> (error) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>statusEl.textContent = </span><span class="s7">`ผิดพลาด: </span><span class="s1">${error.message}</span><span class="s7">`</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s11">finally</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>btn.disabled = </span><span class="s11">false</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- FOCUS TIMER ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">let</span><span class="s1"> timerInterval;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">let</span><span class="s1"> timerSeconds = </span><span class="s14">1500</span><span class="s1">; </span><span class="s12">// 25 minutes</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">let</span><span class="s1"> isTimerRunning = </span><span class="s11">false</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">const</span><span class="s1"> timerDisplay = document.getElementById(</span><span class="s7">'timer-display'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">const</span><span class="s1"> timerToggleBtn = document.getElementById(</span><span class="s7">'timer-toggle'</span><span class="s1">);</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s11">function</span><span class="s1"> updateTimerDisplay() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> minutes = </span><span class="s13">Math</span><span class="s1">.floor(timerSeconds / </span><span class="s14">60</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> seconds = timerSeconds % </span><span class="s14">60</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>timerDisplay.textContent = </span><span class="s7">`</span><span class="s1">${minutes.toString().padStart(</span><span class="s14">2</span><span class="s1">, </span><span class="s7">'0'</span><span class="s1">)}</span><span class="s7">:</span><span class="s1">${seconds.toString().padStart(</span><span class="s14">2</span><span class="s1">, </span><span class="s7">'0'</span><span class="s1">)}</span><span class="s7">`</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>timerToggleBtn.addEventListener(</span><span class="s7">'click'</span><span class="s1">, () =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>isTimerRunning = !isTimerRunning;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>timerToggleBtn.innerHTML = </span><span class="s7">`&lt;i class="fas </span><span class="s1">${isTimerRunning ? </span><span class="s7">'fa-pause'</span><span class="s1"> : </span><span class="s7">'fa-play'</span><span class="s1">}</span><span class="s7">"&gt;&lt;/i&gt;`</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">if</span><span class="s1"> (isTimerRunning) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>timerInterval = setInterval(() =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>timerSeconds--;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s11">if</span><span class="s1"> (timerSeconds &lt; </span><span class="s14">0</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>clearInterval(timerInterval);</span></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">                        </span>alert(</span><span class="s1">'หมดเวลาพักแล้ว! กลับมาเรียนกันต่อ'</span><span class="s4">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>isTimerRunning = </span><span class="s11">false</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>timerToggleBtn.innerHTML = </span><span class="s7">`&lt;i class="fas fa-play"&gt;&lt;/i&gt;`</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>} </span><span class="s11">else</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>updateTimerDisplay();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>}, </span><span class="s14">1000</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s11">else</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>clearInterval(timerInterval);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById(</span><span class="s7">'timer-reset'</span><span class="s1">).addEventListener(</span><span class="s7">'click'</span><span class="s1">, () =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>clearInterval(timerInterval);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>isTimerRunning = </span><span class="s11">false</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>timerSeconds = </span><span class="s14">1500</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>updateTimerDisplay();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>timerToggleBtn.innerHTML = </span><span class="s7">`&lt;i class="fas fa-play"&gt;&lt;/i&gt;`</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p7"><span class="s10"></span><br></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- INITIALIZATION ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>(</span><span class="s11">function</span><span class="s1"> init() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>updateTimerDisplay(); </span><span class="s12">// Init timer display</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">const</span><span class="s1"> storedUser = sessionStorage.getItem(</span><span class="s7">'user'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s11">if</span><span class="s1"> (storedUser) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>initDashboard(</span><span class="s13">JSON</span><span class="s1">.parse(storedUser));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s11">else</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>showPage(</span><span class="s7">'login'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>})();</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;/</span><span class="s1">body</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;/</span><span class="s1">html</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s10"></span><br></p>
+<body class="antialiased">
+
+    <!-- Main Application Container -->
+    <div id="app" class="min-h-screen">
+
+        <!-- Login Page -->
+        <div id="login-page" class="page active">
+            <div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1489549132488-d00b7d80e42a?q=80&w=2070&auto=format&fit=crop');">
+                <div class="w-full max-w-sm p-8 space-y-6 bg-black bg-opacity-60 backdrop-blur-sm rounded-2xl shadow-2xl">
+                    <div class="text-center">
+                        <h1 class="text-4xl font-bold text-white">ZenLearn</h1>
+                        <p class="mt-2 text-lg font-light text-gray-300">Self-Learning System</p>
+                    </div>
+                    <form id="login-form" class="space-y-6">
+                        <div>
+                            <label for="username" class="sr-only">ชื่อผู้ใช้</label>
+                            <input id="username" name="username" type="text" required class="form-input w-full p-3 rounded-lg" placeholder="ชื่อผู้ใช้ (Username)">
+                        </div>
+                        <div>
+                            <label for="password" class="sr-only">รหัสผ่าน</label>
+                            <input id="password" name="password" type="password" required class="form-input w-full p-3 rounded-lg" placeholder="รหัสผ่าน (Password)">
+                        </div>
+                        <p id="login-error" class="text-amber-400 text-center h-4 text-sm"></p>
+                        <div>
+                            <button type="submit" id="login-submit-btn" class="w-full btn-brand font-bold py-3 px-4 rounded-lg text-lg">
+                                เข้าสู่ระบบ
+                            </button>
+                        </div>
+                    </form>
+                    <!-- Contact Channels Added -->
+                    <div class="text-center text-gray-300 pt-4 border-t border-gray-700">
+                        <p class="mb-3 font-light">ช่องทางติดต่อ</p>
+                        <div class="flex justify-center space-x-6">
+                            <a href="https://www.facebook.com/profile.php?id=100089853924528" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-facebook-f text-2xl"></i><span class="block text-xs mt-1">เรียนเลขกับพี่ต้าห์</span></a>
+                            <a href="https://www.tiktok.com/@mathptah" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-tiktok text-2xl"></i><span class="block text-xs mt-1">mathptah</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page">
+            <header class="p-4 flex justify-between items-center sticky top-0 z-50 bg-slate-900/50 backdrop-blur-lg border-b border-slate-700">
+                <h1 class="text-2xl font-bold text-white">ZenLearn</h1>
+                <div class="flex items-center">
+                    <span id="user-display-name" class="mr-4 text-gray-300"></span>
+                    <button id="logout-btn" class="bg-slate-700 hover:bg-slate-600 py-2 px-4 rounded-lg text-sm">ออกจากระบบ</button>
+                </div>
+            </header>
+            <main class="p-4 md:p-8">
+                <h2 class="text-3xl font-semibold mb-6 text-gray-200">คอร์สเรียนของฉัน</h2>
+                <div id="course-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+                    <!-- Course cards will be injected here -->
+                </div>
+                <div id="no-courses" class="hidden text-center py-20">
+                    <i class="fas fa-book-open text-6xl text-slate-600"></i>
+                    <h3 class="text-2xl text-slate-400 mt-4">ยังไม่มีคอร์สเรียน</h3>
+                    <p class="text-slate-500 mt-2">โปรดติดต่อผู้ดูแลระบบเพื่อทำการลงทะเบียน</p>
+                </div>
+            </main>
+        </div>
+
+        <!-- Course Detail Page (Learning Environment) -->
+        <div id="course-page" class="page">
+            <div class="flex h-screen">
+                <!-- Sidebar: Course Navigation -->
+                <aside class="w-80 bg-slate-800 flex-shrink-0 flex flex-col course-sidebar overflow-y-auto">
+                    <div class="p-4 border-b border-slate-700 sticky top-0 bg-slate-800 z-10">
+                        <button id="back-to-dashboard" class="text-sm text-slate-300 hover:text-white mb-3">
+                            <i class="fas fa-arrow-left mr-2"></i> กลับไปหน้าหลัก
+                        </button>
+                        <h3 id="course-sidebar-title" class="text-lg font-bold text-white"></h3>
+                    </div>
+                    <nav id="course-lesson-list" class="flex-grow p-2 space-y-1">
+                        <!-- Lesson items will be injected here -->
+                    </nav>
+                </aside>
+
+                <!-- Main Content: Player, Docs, etc. -->
+                <main class="flex-grow flex flex-col bg-slate-900">
+                    <div id="content-display-area" class="flex-grow p-4 md:p-8 flex items-center justify-center">
+                        <!-- Content (video, doc, quiz) will be injected here -->
+                    </div>
+                    <div class="p-4 bg-slate-800/50 border-t border-slate-700 flex justify-between items-center">
+                        <button id="prev-lesson-btn" class="btn-brand opacity-50 pointer-events-none py-2 px-5 rounded-lg"><i class="fas fa-chevron-left mr-2"></i> ก่อนหน้า</button>
+                        <div id="lesson-completion-area"></div>
+                        <button id="next-lesson-btn" class="btn-brand opacity-50 pointer-events-none py-2 px-5 rounded-lg">ถัดไป <i class="fas fa-chevron-right ml-2"></i></button>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- API Connection ---
+        // IMPORTANT SECURITY NOTE: The current backend uses Google Apps Script and Google Sheets.
+        // This is NOT a secure or scalable solution for a real-world LMS, especially for user authentication.
+        // Passwords should NEVER be stored or checked in plaintext.
+        // RECOMMENDATION: Migrate to a proper backend service like Firebase (Authentication, Firestore) or a dedicated server with a database.
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbyUWO-BGs76jDbLCZrnFaWwhFvULFU-ISZlou7JFWAGH-8Pu5i5_bvadis3SYhMQet5Pw/exec';
+
+        const api = {
+            login: async function(username, password) {
+                const url = `${webAppUrl}?action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('เกิดข้อผิดพลาดในการเชื่อมต่อ');
+                const result = await response.json();
+                if (result.status === 'success') return result.data;
+                throw new Error(result.message || 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
+            },
+            getCourseDetails: async function(courseId) {
+                const url = `${webAppUrl}?action=getCourseDetails&courseId=${encodeURIComponent(courseId)}`;
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('ไม่สามารถโหลดข้อมูลคอร์สได้');
+                const result = await response.json();
+                if (result.status === 'success') return result.data;
+                throw new Error(result.message || 'ไม่พบข้อมูลคอร์ส');
+            }
+        };
+
+        // --- Application State & DOM Elements ---
+        const appState = {
+            currentUser: null,
+            currentCourse: null,
+            currentLessonIndex: 0,
+            lessonProgress: {} // { courseId: [true, false, ...] }
+        };
+
+        const pages = {
+            login: document.getElementById('login-page'),
+            dashboard: document.getElementById('dashboard-page'),
+            course: document.getElementById('course-page'),
+        };
+
+        const loginForm = document.getElementById('login-form');
+        const loginError = document.getElementById('login-error');
+        const loginBtn = document.getElementById('login-submit-btn');
+
+        // --- Page Navigation ---
+        function showPage(pageId) {
+            Object.values(pages).forEach(page => page.classList.remove('active'));
+            pages[pageId].classList.add('active');
+        }
+
+        // --- Dashboard Logic ---
+        function renderDashboard(userData) {
+            document.getElementById('user-display-name').textContent = `สวัสดี, ${userData.name}`;
+            const courseGrid = document.getElementById('course-grid');
+            const noCoursesMessage = document.getElementById('no-courses');
+            courseGrid.innerHTML = '';
+
+            if (!userData.courses || userData.courses.length === 0) {
+                noCoursesMessage.classList.remove('hidden');
+            } else {
+                noCoursesMessage.classList.add('hidden');
+                userData.courses.forEach(course => {
+                    const card = document.createElement('div');
+                    card.className = 'course-card rounded-lg shadow-lg cursor-pointer group';
+                    card.dataset.courseId = course.id;
+
+                    card.innerHTML = `
+                        <div class="relative aspect-[16/10]">
+                            <img src="${course.coverImg}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1A202C/A0AEC0?text=Image+Not+Found';" alt="${course.title}" class="w-full h-full object-cover rounded-t-lg">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <h3 class="font-bold text-lg text-white truncate">${course.title}</h3>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="progress-bar-bg w-full h-1.5 rounded-full">
+                                <div class="progress-bar-fill h-1.5 rounded-full" style="width: ${course.progress || 0}%"></div>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-2 text-right">${course.progress || 0}% เรียนไปแล้ว</p>
+                        </div>
+                    `;
+                    card.addEventListener('click', () => showCourseDetail(course.id));
+                    courseGrid.appendChild(card);
+                });
+            }
+            showPage('dashboard');
+        }
+
+        // --- Course Detail (Learning Environment) Logic ---
+        async function showCourseDetail(courseId) {
+            try {
+                const courseData = await api.getCourseDetails(courseId);
+                appState.currentCourse = flattenCourseContent(courseData);
+                
+                const savedProgress = sessionStorage.getItem(`progress_${courseId}`);
+                if (savedProgress) {
+                    appState.lessonProgress[courseId] = JSON.parse(savedProgress);
+                } else {
+                    appState.lessonProgress[courseId] = new Array(appState.currentCourse.lessons.length).fill(false);
+                }
+
+                document.getElementById('course-sidebar-title').textContent = appState.currentCourse.title;
+                renderLessonList();
+                appState.currentLessonIndex = 0;
+                renderLessonContent(0);
+                showPage('course');
+            } catch (error) {
+                console.error("Failed to load course details:", error);
+                // Use a more user-friendly modal/notification instead of alert
+                alert(`เกิดข้อผิดพลาด: ${error.message}`);
+            }
+        }
+
+        function flattenCourseContent(courseData) {
+            const lessons = [];
+            let lessonCounter = 0;
+            if (courseData.content.videos) {
+                courseData.content.videos.forEach(v => lessons.push({ index: lessonCounter++, type: 'video', title: v.title, url: v.url }));
+            }
+            if (courseData.content.documents) {
+                const getGdriveId = (url) => (url.match(/\/d\/([\w-]+)/) || [])[1] || '';
+                courseData.content.documents.forEach(d => lessons.push({ index: lessonCounter++, type: 'document', title: d.title, previewUrl: `https://drive.google.com/file/d/${getGdriveId(d.url)}/preview`, downloadUrl: `https://drive.google.com/uc?export=download&id=${getGdriveId(d.url)}` }));
+            }
+            if (courseData.content.exercises) {
+                courseData.content.exercises.forEach(e => lessons.push({ index: lessonCounter++, type: 'quiz', title: e.title, url: e.url }));
+            }
+             if (courseData.content.exam) {
+                courseData.content.exam.forEach(ex => lessons.push({ index: lessonCounter++, type: 'quiz', title: ex.title, url: ex.url, isExam: true }));
+            }
+            courseData.lessons = lessons;
+            return courseData;
+        }
+
+        function renderLessonList() {
+            const lessonListEl = document.getElementById('course-lesson-list');
+            lessonListEl.innerHTML = '';
+            const courseId = appState.currentCourse.courseId;
+            const progress = appState.lessonProgress[courseId] || [];
+
+            appState.currentCourse.lessons.forEach((lesson, index) => {
+                const li = document.createElement('li');
+                const icon = lesson.type === 'video' ? 'fa-play-circle' : lesson.type === 'document' ? 'fa-file-alt' : 'fa-question-circle';
+                li.className = `lesson-item p-3 rounded-lg cursor-pointer flex items-center transition-colors duration-200 hover:bg-slate-700`;
+                li.classList.toggle('active-lesson', index === appState.currentLessonIndex);
+                li.classList.toggle('completed-lesson', progress[index]);
+                li.dataset.lessonIndex = index;
+                li.innerHTML = `
+                    <i class="fas ${progress[index] ? 'fa-check-circle text-green-400' : icon} w-8 text-center text-slate-400"></i>
+                    <span class="flex-grow lesson-title">${lesson.title}</span>
+                `;
+                li.addEventListener('click', () => {
+                    appState.currentLessonIndex = index;
+                    renderLessonContent(index);
+                    renderLessonList();
+                });
+                lessonListEl.appendChild(li);
+            });
+        }
+
+        function renderLessonContent(index) {
+            const lesson = appState.currentCourse.lessons[index];
+            const contentArea = document.getElementById('content-display-area');
+            let contentHtml = '';
+
+            switch(lesson.type) {
+                case 'video':
+                    contentHtml = `<iframe class="w-full max-w-5xl aspect-video rounded-lg shadow-2xl bg-black" src="${lesson.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    break;
+                case 'document':
+                    contentHtml = `<div class="w-full h-full flex flex-col items-center justify-center bg-slate-800 rounded-lg p-8 text-center">
+                        <i class="fas fa-file-pdf text-8xl text-slate-600 mb-6"></i>
+                        <h2 class="text-2xl font-bold mb-4">${lesson.title}</h2>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="${lesson.previewUrl}" target="_blank" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-6 rounded-lg transition-colors">🔍 ดูตัวอย่าง</a>
+                            <a href="${lesson.downloadUrl}" class="bg-green-500 hover:bg-green-400 text-white font-bold py-3 px-6 rounded-lg transition-colors">⬇️ ดาวน์โหลด</a>
+                        </div>
+                    </div>`;
+                    break;
+                case 'quiz': // Updated logic for quizzes and exams
+                    contentHtml = `<div class="w-full h-full flex flex-col items-center justify-center bg-slate-800 rounded-lg p-8 text-center">
+                        <i class="fas fa-file-signature text-8xl text-slate-600 mb-6"></i>
+                        <h2 class="text-2xl font-bold mb-2">${lesson.isExam ? 'ข้อสอบ' : 'แบบฝึกหัด'}</h2>
+                        <p class="text-lg text-slate-300 mb-6">${lesson.title}</p>
+                        <button onclick="window.open('${lesson.url}', '_blank')" class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-3 px-8 rounded-lg transition-colors text-xl">
+                            <i class="fas fa-external-link-alt mr-2"></i> เริ่มทำ
+                        </button>
+                    </div>`;
+                    break;
+                default:
+                    contentHtml = `<p>ไม่รู้จักประเภทของบทเรียนนี้</p>`;
+            }
+            contentArea.innerHTML = contentHtml;
+            updateNavigationButtons();
+            renderCompletionButton();
+        }
+        
+        function markLessonComplete() {
+            const courseId = appState.currentCourse.courseId;
+            const index = appState.currentLessonIndex;
+            appState.lessonProgress[courseId][index] = true;
+            sessionStorage.setItem(`progress_${courseId}`, JSON.stringify(appState.lessonProgress[courseId]));
+            renderLessonList();
+            renderCompletionButton();
+            updateDashboardProgress();
+        }
+
+        function renderCompletionButton() {
+            const completionArea = document.getElementById('lesson-completion-area');
+            const courseId = appState.currentCourse.courseId;
+            const isCompleted = appState.lessonProgress[courseId][appState.currentLessonIndex];
+            
+            if (isCompleted) {
+                completionArea.innerHTML = `<div class="text-green-400 font-bold flex items-center"><i class="fas fa-check-circle mr-2"></i> เรียนแล้ว</div>`;
+            } else {
+                const button = document.createElement('button');
+                button.className = 'bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-5 rounded-lg transition-colors';
+                button.innerHTML = '<i class="fas fa-check mr-2"></i>ทำเครื่องหมายว่าเรียนแล้ว';
+                button.onclick = markLessonComplete;
+                completionArea.innerHTML = '';
+                completionArea.appendChild(button);
+            }
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prev-lesson-btn');
+            const nextBtn = document.getElementById('next-lesson-btn');
+            const totalLessons = appState.currentCourse.lessons.length;
+
+            prevBtn.classList.toggle('opacity-50', appState.currentLessonIndex <= 0);
+            prevBtn.classList.toggle('pointer-events-none', appState.currentLessonIndex <= 0);
+
+            nextBtn.classList.toggle('opacity-50', appState.currentLessonIndex >= totalLessons - 1);
+            nextBtn.classList.toggle('pointer-events-none', appState.currentLessonIndex >= totalLessons - 1);
+        }
+
+        function navigateLesson(direction) {
+            const newIndex = appState.currentLessonIndex + direction;
+            if (newIndex >= 0 && newIndex < appState.currentCourse.lessons.length) {
+                appState.currentLessonIndex = newIndex;
+                renderLessonContent(newIndex);
+                renderLessonList();
+            }
+        }
+
+        // --- Event Listeners & Initialization ---
+        async function handleLogin(event) {
+            event.preventDefault();
+            loginError.textContent = '';
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp;กำลังตรวจสอบ...`;
+            
+            try {
+                const userData = await api.login(loginForm.username.value, loginForm.password.value);
+                appState.currentUser = userData;
+                sessionStorage.setItem('user', JSON.stringify(userData));
+                renderDashboard(userData);
+            } catch (error) {
+                loginError.textContent = error.message;
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'เข้าสู่ระบบ';
+            }
+        }
+
+        function handleLogout() {
+            sessionStorage.clear();
+            appState.currentUser = null;
+            appState.currentCourse = null;
+            appState.lessonProgress = {};
+            loginForm.reset();
+            loginError.textContent = '';
+            showPage('login');
+        }
+
+        function init() {
+            loginForm.addEventListener('submit', handleLogin);
+            document.getElementById('logout-btn').addEventListener('click', handleLogout);
+            document.getElementById('back-to-dashboard').addEventListener('click', () => {
+                if (appState.currentUser) {
+                    renderDashboard(appState.currentUser);
+                } else {
+                    handleLogout();
+                }
+            });
+            document.getElementById('prev-lesson-btn').addEventListener('click', () => navigateLesson(-1));
+            document.getElementById('next-lesson-btn').addEventListener('click', () => navigateLesson(1));
+
+            const storedUser = sessionStorage.getItem('user');
+            if (storedUser) {
+                appState.currentUser = JSON.parse(storedUser);
+                renderDashboard(appState.currentUser);
+            } else {
+                showPage('login');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>
